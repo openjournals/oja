@@ -7,6 +7,7 @@ gem 'rails', '3.2.7'
 
 gem 'mysql2'
 gem 'state_machine'
+gem 'github'
 
 
 # Gems used only for assets and not required
