@@ -8,6 +8,7 @@ gem 'rails', '3.2.7'
 gem 'mysql2'
 gem 'state_machine'
 gem 'octokit'
+gem 'sidekiq'
 
 # Username: ***REMOVED***
 # Password: ***REMOVED***

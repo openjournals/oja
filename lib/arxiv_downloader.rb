@@ -19,11 +19,11 @@ class ArxivDownloader
   def initialize_git(arxiv_id)
     repo = GITHUB_CONNECTION.create_repository(arxiv_id)
     `cd tmp/#{arxiv_id}`
-    `git init`
-    `git add *`
-    `git commit -m 'Adding initial paper'`
-    `git remote add origin #{repo.clone_url}`
-    `git push -u origin master`
+    `cd tmp/#{arxiv_id} && git init`
+    `cd tmp/#{arxiv_id} && git add *`
+    `cd tmp/#{arxiv_id} && git commit -m 'Adding initial paper'`
+    `cd tmp/#{arxiv_id} && git remote add origin #{repo.clone_url}`
+    `cd tmp/#{arxiv_id} && git push -u origin master`
   end
   
   def add_files_to_git
