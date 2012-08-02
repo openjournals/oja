@@ -7,7 +7,10 @@ gem 'rails', '3.2.7'
 
 gem 'mysql2'
 gem 'state_machine'
-gem 'github'
+gem 'octokit'
+
+# Username: ***REMOVED***
+# Password: ***REMOVED***
 
 
 # Gems used only for assets and not required
@@ -41,4 +44,4 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
