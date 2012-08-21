@@ -1,5 +1,12 @@
-class Paper < ActiveRecord::Base
-  # attr_accessible :title, :body
+class Paper 
+  include MongoMapper::Document
+  key :title, String
+  key :github_address, String
+  key :version, String, :default => "1.0"
+  key :state, String
+  key :category, String
+  key :arxiv_id, String
+
   after_create :pull_arxiv_details
   
   state_machine :initial => :submitted do 

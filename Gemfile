@@ -5,10 +5,18 @@ gem 'rails', '3.2.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+
+
 gem 'state_machine'
 gem 'octokit'
 gem 'sidekiq'
+
+gem 'mongo_mapper',           '>= 0.9.0'
+gem 'jnunemaker-validatable', '>= 1.8.4'
+gem 'devise',                 '2.1'
+gem 'mm-devise',               :git => "https://github.com/pollingj/mm-devise.git"
+gem 'bson_ext'
+gem "omniauth-facebook"
 
 # Username: ***REMOVED***
 # Password: ***REMOVED***
@@ -22,7 +30,6 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.0.3'
 end
 
