@@ -1,0 +1,13 @@
+development: &global_settings
+  host: localhost
+  database: oja
+  port: 27017
+
+
+test:
+  database: marv-test
+  <<: *global_settings
+
+production:
+  
+
