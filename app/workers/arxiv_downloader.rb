@@ -1,8 +1,6 @@
 class ArxivDownloader
   include Sidekiq::Worker
   
-  attr_accessor :arxiv_id
-
   def perform(arxiv_id)
     puts "Downloading"
     download(arxiv_id)

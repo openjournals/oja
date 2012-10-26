@@ -1,7 +1,5 @@
 class User
   include MongoMapper::Document
-
-
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :validatable, :omniauthable
@@ -17,7 +15,6 @@ class User
 
   timestamps!
 
-
   def is_editor
     @roles.include? 'editor'
   end
@@ -27,7 +24,6 @@ class User
   end
 
   def role_on_paper(paper)
-
     if  paper.submiting_authour == self
       role = 'submitting_author'
     elsif paper.reviewer = self 
@@ -37,8 +33,6 @@ class User
     else 
       role=nil
     end
-
   end
-
 end
   
