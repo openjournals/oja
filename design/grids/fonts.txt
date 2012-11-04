@@ -1,0 +1,86 @@
+Colors
+background: #008bc6
+light blue: #00b1ff
+green: #b2cd00
+purple: #a100cf
+
+Text
+h1
+font-family: Helvetica Neue
+font-weight: bold
+font-size: 18px
+color: #2b2b2b
+text-shadow: 0px 1px 0px #fff
+
+h2
+font-family: Helvetica Neue
+font-weight: bold
+font-size: 13px
+color: #4a4a4a
+text-shadow: 0px 1px 0px #fff
+
+h3
+font-family: Helvetica Neue
+font-weight: regular
+font-size: 13px
+color: #4a4a4a
+text-shadow: 0px 1px 0px #fff
+
+body
+font-family: Helvetica Neue
+font-weight: regular
+font-size: 12px
+color: #4a4a4a
+
+label
+font-family: Helvetica Neue
+font-weight: bold
+font-size: 10px
+color: #9c9c9c
+text-shadow: 0px 1px 0px #fff
+
+buttons
+purple
+background: #a100cf
+border-radius: 3px
+box-shadow: inset 0px 1px 0px #c600ff, 0px 2px 3px rgba (0,0,0,.25)
+border: 1px solid #670085
+font-family: Helvetica Neue
+font-weight: bold
+font-size: 15px
+color: #fff
+text-shadow: 0px 1px 2px rgba (0,0,0,.3)
+
+blue
+background: #009bdf
+border-radius: 3px
+box-shadow: inset 0px 1px 0px #00b1ff, 0px 2px 3px rgba (0,0,0,.25)
+border: 1px solid #006c9b
+font-family: Helvetica Neue
+font-weight: bold
+font-size: 15px
+color: #fff
+text-shadow: 0px 1px 2px rgba (0,0,0,.3)
+
+
+green
+background: #b2cd00
+border-radius: 3px
+box-shadow: inset 0px 1px 0px #c9e800, 0px 2px 3px rgba (0,0,0,.25)
+border: 1px solid #6c7c00
+font-family: Helvetica Neue
+font-weight: bold
+font-size: 15px
+color: #fff
+text-shadow: 0px 1px 2px rgba (0,0,0,.3)
+
+grey
+background: #f3f3f3
+border-radius: 3px
+box-shadow: inset 0px 1px 0px #fff 0px 2px 3px rgba (0,0,0,.25)
+border: 1px solid #bfbfbf
+font-family: Helvetica Neue
+font-weight: bold
+font-size: 15px
+color: #fff
+text-shadow: 0px 1px 2px rgba (0,0,0,.3)
