@@ -1,23 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Oja</title>
+  <title>The Open Journal for Astrophysics</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-  <div class='login'>
-  <%if @user%>
-    <p class='user_details'><%=link_to @user.email, "/users/#{@user.id}" %> <%=link_to 'sign out', destroy_user_session_path %></p> 
-  <%else%>
-    <p class='login'><%=link_to "sign in" "/users/sign_in"%>  <a href='/users/sign_out' data-method='delete' rel='nofollow' class='logout'> Logout</a> </p>
-  <%end%>
+  <div id="center">
+    <%= image_tag "oja_logo.jpg" %>
+    <%= yield %>
   </div>
-<%= yield %>
-
 </body>
 </html>
