@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "grid"
+@import "general"
 
 #center
   width: $full-width
@@ -33,6 +34,7 @@
   .central-certified
     width: $one-half + $gutter-size
     padding: $column-size/2 0
+    border-right: 1px solid #bfbfbf
     float: left
     margin: 0px
     
@@ -40,8 +42,16 @@
       width: 90%
     
   .right-certified
+    position: relative
     width: $one-quarter - 1 
     float: right
-    border-left: 1px solid #bfbfbf
     background: #f5f5f5
+    
+    .fold
+      position: absolute
+      top: 28px
+      left: -4px
+    .about
+      color: $oja_green
+      padding: 20px
     
