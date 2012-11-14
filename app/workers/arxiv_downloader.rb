@@ -1,10 +1,10 @@
 class ArxivDownloader
   include Sidekiq::Worker
   
-  def perform(arxiv_id)
+  def perform(arxiv_id, paper_id)
     puts "Downloading"
     download(arxiv_id)
-    initialize_git(arxiv_id)
+    initialize_git(arxiv_id, paper_id)
   end
   
   def download(arxiv_id)
@@ -14,7 +14,7 @@ class ArxivDownloader
     `rm tmp/#{arxiv_id}.tar.gz`
   end
   
-  def initialize_git(arxiv_id)
+  def initialize_git(arxiv_id, paper_id)
     puts "Creating GitHub repository"
     repo = GITHUB_CONNECTION.create_repository(arxiv_id)
     puts "GitHub address: #{repo.ssh_url}"
@@ -28,6 +28,9 @@ class ArxivDownloader
     
     `cd tmp/#{arxiv_id} && git remote add origin #{repo.ssh_url}`    
     `ssh-agent bash -c 'ssh-add -D; ssh-add /Users/arfon/Sites/Adler/oja/config/ssh/***REMOVED***_rsa; cd tmp/#{arxiv_id} && git push -u origin master'`
-    puts "Done"
+
+    paper = Paper.find(paper_id)
+    paper.github_address = repo.ssh_url
+    paper.save
   end
 end

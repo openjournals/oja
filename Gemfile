@@ -8,6 +8,7 @@ gem 'rails', '3.2.8'
 gem 'state_machine'
 gem 'octokit'
 gem 'sidekiq'
+gem 'arxiv'
 
 gem 'mongo_mapper',           '>= 0.9.0'
 gem 'jnunemaker-validatable', '>= 1.8.4'
