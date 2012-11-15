@@ -1,0 +1,43 @@
+<div id="main-bar">
+</div>
+<div id="main">
+  <div class="left-tabs">
+    <div class="tab submit active"><h3>Submit a paper</h3></div>
+    <div class="tab view"><h3>View papers</h3></div>
+    <div class="tab edit"><h3>Edit papers</h3></div>
+  </div>  
+  <div class="central-certified wide">
+    <h1>Open Journal for Astrophysics</h1>
+    <p>Turducken frankfurter strip steak short ribs short loin, venison spare ribs ham hock beef ribs sirloin drumstick kielbasa jowl. Prosciutto pastrami capicola turducken jowl, flank salami. Doner pastrami capicola ham rump brisket. Fatback leberkas ham bacon frankfurter salami tri-tip.</p>
+    
+    <h1 class="headline">Submit a paper to OJA</h1>
+    <p>Shankle doner corned beef, bresaola tri-tip capicola t-bone shoulder turkey jerky venison. Kielbasa corned beef pork chop flank short loin shoulder. Swine brisket bresaola, turkey ham pork loin beef ribs flank hamburger pig kielbasa turducken tongue. Sausage beef ribs ground round pork chop. Turkey shoulder capicola kielbasa boudin.</p>
+    
+    <%= form_tag("/submissions", :method => "post") do %>
+      <%= text_field_tag(:arxiv_id, "http://arxiv.org/1234", :class => "arxiv-id") %>
+      <%= submit_tag("Upload", :class => "grey-button") %>
+    <% end %>
+  </div>
+  
+  <div class="right-certified">
+    <%= image_tag "fold.png", :class => "fold" %>
+    <h3 class="about">Submit a paper to OJA</h3>
+    <div class="paper">
+      <p class="kind">Title</p>
+      <p class="value">Galaxy Zoo: Bulgeless Galaxies with Growing Black Holes</p>
+      
+      <p class="kind">Author</p>
+      <p class="value">Lintott, C. J. et al</p>
+      
+      <p class="kind">Year</p>
+      <p class="value">2009</p>
+      
+      <p class="kind">Submission Date</p>
+      <p class="value">1 November 2012</p>
+      
+      <p class="kind">Review Status</p>
+      <p class="value">Reviewed &amp; Accepted</p>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>

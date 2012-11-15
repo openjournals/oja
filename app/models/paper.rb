@@ -6,12 +6,11 @@ class Paper
   key :state, String
   key :category, String
   key :arxiv_id, String
-  key :authour_ids, Array
+  key :author_ids, Array
 
-
-  has_many   :authours, :in => :authour_ids
-  has_one    :submitting_authour
-  belongs_tp :reviewer
+  # has_many   :authors, :in => :author_ids
+  # has_one    :submitting_author
+  # belongs_to :reviewer
 
   has_many :tasks
 
@@ -26,7 +25,9 @@ class Paper
   
   def pull_arxiv_details
     # Do something here
-    paper = ArxivDownloader.new(self.arxiv_id)
-    paper.download
+    
+    download = ArxivDownloader.perform_async(self.arxiv_id, self.id)
+    self.github_address = download
+    save
   end
 end
