@@ -7,6 +7,8 @@ class Paper
   key :category, String
   key :arxiv_id, String
   key :author_ids, Array
+  key :pdf_url, String
+  key :pngs_generated, Boolean
 
   # has_many   :authors, :in => :author_ids
   # has_one    :submitting_author
@@ -15,6 +17,7 @@ class Paper
   has_many :tasks
 
   after_create :pull_arxiv_details
+  after_create :make_pngs
   
   state_machine :initial => :submitted do 
     state :submitted 
@@ -24,10 +27,12 @@ class Paper
   private
   
   def pull_arxiv_details
-    # Do something here
-    
     download = ArxivDownloader.perform_async(self.arxiv_id, self.id)
     self.github_address = download
     save
+  end
+  
+  def make_pngs
+    PngGenerator.perform_async(self.id, self.pdf_url)
   end
 end

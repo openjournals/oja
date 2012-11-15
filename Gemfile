@@ -9,6 +9,7 @@ gem 'state_machine'
 gem 'octokit'
 gem 'sidekiq'
 gem 'arxiv'
+gem 'mini_magick'
 
 gem 'mongo_mapper',           '>= 0.9.0'
 gem 'jnunemaker-validatable', '>= 1.8.4'

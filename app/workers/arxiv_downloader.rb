@@ -18,7 +18,7 @@ class ArxivDownloader
     puts "Creating GitHub repository"
     repo = GITHUB_CONNECTION.create_repository(arxiv_id)
     puts "GitHub address: #{repo.ssh_url}"
-    
+            
     `cd tmp/#{arxiv_id} && git init`
     `cd tmp/#{arxiv_id} && git add *`
     
