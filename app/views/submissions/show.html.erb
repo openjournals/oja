@@ -1,0 +1,69 @@
+<div id="main-bar">
+</div>
+<div id="main">
+  <div class="left-tabs">
+    <div class="tab submit active"><h3>Submit a paper</h3></div>
+    <div class="tab view"><h3>View papers</h3></div>
+    <div class="tab edit"><h3>Edit papers</h3></div>
+  </div>  
+  <div class="central-certified wide">
+    <h1>Open Journal for Astrophysics</h1>
+    <p>Turducken frankfurter strip steak short ribs short loin, venison spare ribs ham hock beef ribs sirloin drumstick kielbasa jowl. Prosciutto pastrami capicola turducken jowl, flank salami. Doner pastrami capicola ham rump brisket. Fatback leberkas ham bacon frankfurter salami tri-tip.</p>
+    
+    <h1 class="headline">Submit a paper to OJA</h1>
+    <p>Shankle doner corned beef, bresaola tri-tip capicola t-bone shoulder turkey jerky venison. Kielbasa corned beef pork chop flank short loin shoulder. Swine brisket bresaola, turkey ham pork loin beef ribs flank hamburger pig kielbasa turducken tongue. Sausage beef ribs ground round pork chop. Turkey shoulder capicola kielbasa boudin.</p>
+    
+    <%= form_tag("/submissions", :method => "post") do %>
+      <%= text_field_tag(:arxiv_id, "http://arxiv.org/1234", :class => "arxiv-id") %>
+      <%= submit_tag("Upload", :class => "grey-button") %>
+    <% end %>
+
+    <div class="paper">
+      <div class="paper_preview">
+        <%= image_tag png_for_page(1, @paper) %>
+      </div>
+      <div class="paper_details">
+        <h3 class="about">You've just uploaded</h3>
+        <p class="kind">Title</p>
+        <p class="value"><%= @paper.title %></p>
+
+        <p class="kind">Authors</p>
+        <p class="value"><%= @paper.authors.first %> <em>et al.</em></p>
+
+        <p class="kind">Year</p>
+        <p class="value"><%= @paper.submitted_at.strftime("%Y") %></p>
+
+        <p class="kind">Submission Date</p>
+        <p class="value"><%= @paper.submitted_at.strftime("%d %B %Y") %></p>
+        
+        <h3><%= check_box_tag('author') %> I am a submitting author</h3>
+        
+        <%= submit_tag("Submit Paper", :class => "green-button") %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="right-certified preview">
+    <%= image_tag "fold.png", :class => "fold" %>
+    <h3 class="callout">New to OJA?</h3>
+    
+    <div class="signup">
+      <%= form_tag('/signup') do %>
+        <%= text_field_tag "login", "Full Name" %>
+        <%= password_field_tag "password", "password" %>
+        <%= submit_tag("Create Account", :class => "grey-button") %>
+      <%- end -%>
+    </div>
+    
+    <h3 class="callout">Have an account? Sign in:</h3>
+
+    <div class="signin">
+      <%= form_tag('/signin') do %>
+        <%= text_field_tag "login", "Full Name" %>
+        <%= password_field_tag "password", "password" %>
+        <%= submit_tag("Sign In", :class => "blue-button") %>
+      <%- end -%>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>

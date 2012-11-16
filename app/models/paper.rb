@@ -9,6 +9,8 @@ class Paper
   key :author_ids, Array
   key :pdf_url, String
   key :pngs_generated, Boolean
+  key :authors, Array
+  key :submitted_at, DateTime
 
   # has_many   :authors, :in => :author_ids
   # has_one    :submitting_author
@@ -33,6 +35,6 @@ class Paper
   end
   
   def make_pngs
-    PngGenerator.perform_async(self.id, self.pdf_url)
+    # PngGenerator.perform_async(self.id, self.pdf_url)
   end
 end

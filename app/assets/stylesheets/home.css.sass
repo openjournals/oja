@@ -73,7 +73,7 @@
       width: ($column-size * 5) + ($gutter-size * 6)
       padding-left: $gutter-size + $column-size
     p
-      width: 90%
+      width: 100%
       
     h1
       &.headline
@@ -101,7 +101,20 @@
         color: #2B2B2B
         height: 36px
         text-shadow: 0px 1px 2px rgba (0,0,0,.3)
-      
+
+      &.green-button
+        background: #b2cd00
+        border-radius: 3px
+        box-shadow: inset 0px 1px 0px #c9e800, 0px 2px 3px rgba (0,0,0,.25)
+        border: 1px solid #6c7c00
+        font-family: Helvetica Neue
+        font-weight: bold
+        font-size: 15px
+        padding: 0px 26px
+        margin-left: 22px
+        color: #fff
+        height: 36px
+        text-shadow: 0px 1px 2px rgba (0,0,0,.3)
     
   .right-certified
     position: relative
@@ -109,7 +122,10 @@
     float: right
     background: #f5f5f5
     border-left: 1px solid #bfbfbf
-    min-height: 380px
+    height: 100%
+    
+    &.preview
+      min-height: 700px
     .fold
       position: absolute
       top: 28px
@@ -118,6 +134,69 @@
     .about
       color: $oja_green
       padding: 20px
+    
+    .callout
+      padding: 20px 20px 0px 20px
+      
+    .signup
+      form
+        padding: 0px $gutter-size 0px $gutter-size
+        input
+          width: 195px
+          font-size: 12px
+          line-height: 25px
+          color: #bfbfbf          
+          border-radius: 3px
+          box-shadow: inset 0px 1px 0px #fff 0px 2px 3px rgba (0,0,0,.25)
+          border: 1px solid #bfbfbf
+          font-family: Helvetica Neue
+          font-weight: normal
+          margin-left: 0px
+          
+          &.grey-button
+            width: 199px
+            margin-top: 2px
+            background: #f3f3f3
+            border-radius: 3px
+            box-shadow: inset 0px 1px 0px #fff 0px 2px 3px rgba (0,0,0,.25)
+            border: 1px solid #bfbfbf
+            font-family: Helvetica Neue
+            font-weight: bold
+            font-size: 15px
+            color: #2B2B2B
+            height: 36px
+            text-shadow: 0px 1px 2px rgba (0,0,0,.3)
+            
+    .signin
+      form
+        padding: 0px $gutter-size 0px $gutter-size
+        input
+          width: 195px
+          font-size: 12px
+          line-height: 25px
+          color: #bfbfbf          
+          border-radius: 3px
+          box-shadow: inset 0px 1px 0px #fff 0px 2px 3px rgba (0,0,0,.25)
+          border: 1px solid #bfbfbf
+          font-family: Helvetica Neue
+          font-weight: normal
+          margin-left: 0px
+          
+          &.blue-button
+            width: 199px
+            margin-top: 2px
+            background: #009bdf
+            border-radius: 3px
+            height: 36px
+            box-shadow: inset 0px 1px 0px #00b1ff, 0px 2px 3px rgba (0,0,0,.25)
+            border: 1px solid #006c9b
+            font-family: Helvetica Neue
+            font-weight: bold
+            font-size: 15px
+            color: #fff
+            text-shadow: 0px 1px 2px rgba (0,0,0,.3)
+
+
       
     .paper
       padding: 0px 20px
@@ -138,5 +217,38 @@
         font-size: 13px
         color: #4a4a4a
         text-shadow: 0px 1px 0px #fff
+  
+  .paper
+    padding-top: 30px
+    .paper_preview
+      vertical-align: top
+      display: inline-block
+      width: ($column-size * 2) + ($gutter-size * 3)
+      img
+        border: 5px solid $oja_green
+    .paper_details
+      vertical-align: top
+      display: inline-block
+      width: $one-quarter
+
+      h3
+        margin-top: 0px
+        padding-top: 0px
         
-    
+      .kind
+        font-family: Helvetica Neue
+        font-weight: bold
+        font-size: 10px
+        color: #9c9c9c
+        text-shadow: 0px 1px 0px #fff
+        padding: 0px 0px 3px 0px
+        margin: 0px
+
+      .value
+        padding: 0px 0px 10px 0px
+        margin: 0px
+        font-family: Helvetica Neue
+        font-weight: regular
+        font-size: 13px
+        color: #4a4a4a
+        text-shadow: 0px 1px 0px #fff
