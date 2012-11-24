@@ -14,29 +14,31 @@
     <p>Shankle doner corned beef, bresaola tri-tip capicola t-bone shoulder turkey jerky venison. Kielbasa corned beef pork chop flank short loin shoulder. Swine brisket bresaola, turkey ham pork loin beef ribs flank hamburger pig kielbasa turducken tongue. Sausage beef ribs ground round pork chop. Turkey shoulder capicola kielbasa boudin.</p>
     
     <%= form_tag("/submissions", :method => "post") do %>
-      <%= text_field_tag(:arxiv_id, "http://arxiv.org/1234", :class => "arxiv-id") %>
+      <%= text_field_tag(:arxiv_id, "http://arxiv.org/abs/1206.1831", :class => "arxiv-id auto-replace", :id => "arxiv-submission-id", "data-original-text" => "http://arxiv.org/abs/1206.1831") %>
       <%= submit_tag("Upload", :class => "grey-button") %>
     <% end %>
   </div>
   
   <div class="right-certified">
     <%= image_tag "fold.png", :class => "fold" %>
-    <h3 class="about">Submit a paper to OJA</h3>
-    <div class="paper">
-      <p class="kind">Title</p>
-      <p class="value">Galaxy Zoo: Bulgeless Galaxies with Growing Black Holes</p>
-      
-      <p class="kind">Author</p>
-      <p class="value">Lintott, C. J. et al</p>
-      
-      <p class="kind">Year</p>
-      <p class="value">2009</p>
-      
-      <p class="kind">Submission Date</p>
-      <p class="value">1 November 2012</p>
-      
-      <p class="kind">Review Status</p>
-      <p class="value">Reviewed &amp; Accepted</p>
+    <h3 class="callout">New to OJA?</h3>
+    
+    <div class="signup">
+      <%= form_tag('/signup') do %>
+        <%= text_field_tag "login", "Full Name", "data-original-text" => "Full Name", :class => "auto-replace" %>
+        <%= password_field_tag "password", "password", "data-original-text" => "password", :class => "auto-replace" %>
+        <%= submit_tag("Create Account", :class => "grey-button") %>
+      <%- end -%>
+    </div>
+    
+    <h3 class="callout">Have an account? Sign in:</h3>
+
+    <div class="signin">
+      <%= form_tag('/signin') do %>
+        <%= text_field_tag "login", "Full Name", "data-original-text" => "Full Name", :class => "auto-replace" %>
+        <%= password_field_tag "password", "password", "data-original-text" => "password", :class => "auto-replace" %>
+        <%= submit_tag("Sign In", :class => "blue-button") %>
+      <%- end -%>
     </div>
   </div>
   <div class="clear"></div>

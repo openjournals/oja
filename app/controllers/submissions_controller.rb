@@ -27,6 +27,10 @@ class SubmissionsController < ApplicationController
     @paper = Paper.find(params[:id])
   end
   
+  def status
+    @paper = Paper.find(params[:id])
+  end
+  
   def valid_url(arxiv_id)
     # http://arxiv.org/abs/1211.3105
     require "net/http"

@@ -49,8 +49,8 @@
     
     <div class="signup">
       <%= form_tag('/signup') do %>
-        <%= text_field_tag "login", "Full Name" %>
-        <%= password_field_tag "password", "password" %>
+        <%= text_field_tag "login", "Full Name", "data-original-text" => "Full Name", :class => "auto-replace" %>
+        <%= password_field_tag "password", "password", "data-original-text" => "password", :class => "auto-replace" %>
         <%= submit_tag("Create Account", :class => "grey-button") %>
       <%- end -%>
     </div>
@@ -59,8 +59,8 @@
 
     <div class="signin">
       <%= form_tag('/signin') do %>
-        <%= text_field_tag "login", "Full Name" %>
-        <%= password_field_tag "password", "password" %>
+        <%= text_field_tag "login", "Full Name", "data-original-text" => "Full Name", :class => "auto-replace" %>
+        <%= password_field_tag "password", "password", "data-original-text" => "password", :class => "auto-replace" %>
         <%= submit_tag("Sign In", :class => "blue-button") %>
       <%- end -%>
     </div>

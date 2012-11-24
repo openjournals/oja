@@ -31,7 +31,7 @@
       border-right: 1px solid #bfbfbf
       border-bottom: 1px solid #bfbfbf
       width: 150px
-      height: 130px
+      height: 135px
       
       h3
         width: 150px
@@ -64,8 +64,8 @@
       padding: $column-size/2 55px
     
   .central-certified
-    width: $one-half + $gutter-size
-    padding: $column-size/2 0
+    width: $one-half - $gutter-size
+    padding: $column-size/2 $gutter-size*2 $column-size/2 0
     float: left
     margin: 0px
     
@@ -123,9 +123,11 @@
     background: #f5f5f5
     border-left: 1px solid #bfbfbf
     height: 100%
+    min-height: 430px
     
     &.preview
       min-height: 700px
+      
     .fold
       position: absolute
       top: 28px
@@ -140,9 +142,11 @@
       
     .signup
       form
-        padding: 0px $gutter-size 0px $gutter-size
+        width: $column-size * 3
+        padding-left: $gutter-size
         input
-          width: 195px
+          width: ($column-size * 3) - 10
+          padding: 5px
           font-size: 12px
           line-height: 25px
           color: #bfbfbf          
@@ -154,8 +158,8 @@
           margin-left: 0px
           
           &.grey-button
-            width: 199px
-            margin-top: 2px
+            width: ($column-size * 3)
+            margin-top: 3px
             background: #f3f3f3
             border-radius: 3px
             box-shadow: inset 0px 1px 0px #fff 0px 2px 3px rgba (0,0,0,.25)
@@ -169,9 +173,11 @@
             
     .signin
       form
-        padding: 0px $gutter-size 0px $gutter-size
+        width: $column-size * 3
+        padding-left: $gutter-size
         input
-          width: 195px
+          width: ($column-size * 3) - 10
+          padding: 5px
           font-size: 12px
           line-height: 25px
           color: #bfbfbf          
@@ -183,8 +189,8 @@
           margin-left: 0px
           
           &.blue-button
-            width: 199px
-            margin-top: 2px
+            width: ($column-size * 3)
+            margin-top: 3px
             background: #009bdf
             border-radius: 3px
             height: 36px
