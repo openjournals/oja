@@ -32,6 +32,7 @@
       border-bottom: 1px solid #bfbfbf
       width: 150px
       height: 135px
+      background: #f5f5f5
       
       h3
         width: 150px
@@ -39,22 +40,36 @@
         padding: 100px 0px 0px 0px
         text-align: center
         
-      &.active
-        border-right: none
-        background: #fafafa
-        
-        h3
-          color: $oja_green
-        
       &.submit
-        background: url('paper_submit.png') no-repeat 43px 25px
+        background: #f5f5f5 url('paper_submit.png') no-repeat 43px 25px
+        
+        &.active
+          border-right: none
+          background: #fafafa url('paper_submit.png') no-repeat 43px 25px
+
+          h3
+            color: $oja_green
       
       &.view
         background: #f5f5f5 url('paper_view.png') no-repeat 43px 25px
+        
+        &.active
+          border-right: none
+          background: #fafafa url('paper_view.png') no-repeat 43px 25px
+
+          h3
+            color: $oja_green
 
       &.edit
         background: #f5f5f5 url('paper_edit.png') no-repeat 43px 25px
-    
+        
+        &.active
+          border-right: none
+          background: #fafafa url('paper_edit.png') no-repeat 43px 25px
+
+          h3
+            color: $oja_green
+      
   .left-certified
     width: $one-quarter + $gutter-size
     float: left

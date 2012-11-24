@@ -1,4 +1,6 @@
 class SubmissionsController < ApplicationController
+  before_filter :authenticate_user!, :only => [:dashboard]
+  
   def index
     
   end
@@ -29,6 +31,10 @@ class SubmissionsController < ApplicationController
   
   def status
     @paper = Paper.find(params[:id])
+  end
+  
+  def dashboard
+    
   end
   
   def valid_url(arxiv_id)

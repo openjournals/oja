@@ -1,0 +1,20 @@
+  <%= image_tag "fold.png", :class => "fold" %>
+  <h3 class="callout">New to OJA?</h3>
+  
+  <div class="signup">
+    <%= form_tag('/users') do %>
+      <%= text_field_tag "user[email]", "Email address", "data-original-text" => "Email address", :class => "auto-replace" %>
+      <%= password_field_tag "user[password]", "password", "data-original-text" => "password", :class => "auto-replace" %>
+      <%= submit_tag("Create Account", :class => "grey-button") %>
+    <%- end -%>
+  </div>
+  
+  <h3 class="callout">Have an account? Sign in:</h3>
+
+  <div class="signin">
+    <%= form_tag('/users/sign_in') do %>
+      <%= text_field_tag "user[email]", "Email address", "data-original-text" => "Email address", :class => "auto-replace" %>
+      <%= password_field_tag "user[password]", "password", "data-original-text" => "password", :class => "auto-replace" %>
+      <%= submit_tag("Sign In", :class => "blue-button") %>
+    <%- end -%>
+  </div>

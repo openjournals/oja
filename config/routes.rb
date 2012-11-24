@@ -55,6 +55,10 @@ Oja::Application.routes.draw do
     member do
       get 'status'
     end
+    
+    collection do
+      get 'dashboard'
+    end
   end
 
   root :to => 'submissions#index'
