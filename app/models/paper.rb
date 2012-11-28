@@ -21,8 +21,14 @@ class Paper
     state :accepted
   end
   
+  def arxiv_no
+    self.arxiv_id.split("/").last
+  end
+
+
   private
-  
+
+
   def pull_arxiv_details
     # Do something here
     
