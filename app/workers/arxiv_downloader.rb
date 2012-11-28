@@ -19,6 +19,9 @@ class ArxivDownloader
     repo = GITHUB_CONNECTION.create_repository(arxiv_id)
     puts "GitHub address: #{repo.ssh_url}"
     
+    `cd tmp/#{arxiv_id} && mkdir oja_pngs_#{arxiv_id}`
+    `cd tmp/#{arxiv_id} && curl -O http://arxiv.org/pdf/#{arxiv_id}.pdf`
+    `cd tmp/#{arxiv_id}/oja_pngs_#{arxiv_id} && convert -density 300 ../#{arxiv_id}.pdf -bordercolor white -border 0 -resize 140 +adjoin #{arxiv_id}-small.png`      
     `cd tmp/#{arxiv_id} && git init`
     `cd tmp/#{arxiv_id} && git add *`
     

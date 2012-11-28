@@ -2,9 +2,64 @@
   <script type="text/javascript">
 
     $(document).ready( function(){
-      
-      var url = "/proxy/<%=@paper.arxiv_no%>";
-      $('#mypdfdoc').PDFDoc( { source : url } );
+      PDFJS.disableWorker = true;
+
+      var pdfDoc = null,
+          pageNum = 1,
+          scale = 0.35,
+          canvas = document.getElementById('mypdfdoc'),
+          ctx = canvas.getContext('2d');
+
+      //
+      // Get page info from document, resize canvas accordingly, and render page
+      //
+      function renderPage(num) {
+        // Using promise to fetch the page
+        pdfDoc.getPage(num).then(function(page) {
+          var viewport = page.getViewport(scale);
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+
+          // Render PDF page into canvas context
+          var renderContext = {
+            canvasContext: ctx,
+            viewport: viewport
+          };
+          page.render(renderContext);
+        });
+
+        // Update page counters
+        document.getElementById('page_num').textContent = pageNum;
+        document.getElementById('page_count').textContent = pdfDoc.numPages;
+      }
+
+      //
+      // Go to previous page
+      //
+      function goPrevious() {
+        if (pageNum <= 1)
+          return;
+        pageNum--;
+        renderPage(pageNum);
+      }
+
+      //
+      // Go to next page
+      //
+      function goNext() {
+        if (pageNum >= pdfDoc.numPages)
+          return;
+        pageNum++;
+        renderPage(pageNum);
+      }
+
+      //
+      // Asynchronously download PDF as an ArrayBuffer
+      //
+      PDFJS.getDocument("/proxy/<%=@paper.arxiv_no%>").then(function getPdfHelloWorld(_pdfDoc) {
+        pdfDoc = _pdfDoc;
+        renderPage(pageNum);
+      });
 
     });
   </script>
@@ -12,34 +67,44 @@
 
 <div id="main-bar">
 </div>
+
+
 <div id="main">
-  <div class="left-certified">
-    <%= image_tag "oja_certified.png", :class => "certification-status" %>
+  <div class="left-tabs">
+    <div class="tab submit active"><h3>Submit a paper</h3></div>
+    <div class="tab view"><h3>View papers</h3></div>
+    <div class="tab edit"><h3>Edit papers</h3></div>
   </div>  
-  <div class="central-certified">
-    <div style="width: 400px; height: 600px;">
-        <div id="mypdfdoc"></div>
-    </div>  
-  </div>
-  <div class="right-certified">
-    <%= image_tag "fold.png", :class => "fold" %>
-    <h3 class="about">About this paper</h3>
+  <div class="central-certified wide">
+
     <div class="paper">
-      <p class="kind">Title</p>
-      <p class="value">Galaxy Zoo: Bulgeless Galaxies with Growing Black Holes</p>
-      
-      <p class="kind">Author</p>
-      <p class="value">Lintott, C. J. et al</p>
-      
-      <p class="kind">Year</p>
-      <p class="value">2009</p>
-      
-      <p class="kind">Submission Date</p>
-      <p class="value">1 November 2012</p>
-      
-      <p class="kind">Review Status</p>
-      <p class="value">Reviewed &amp; Accepted</p>
+      <div class="paper_preview">
+          <canvas id="mypdfdoc"></canvas>
+      </div>
+      <div class="paper_details">
+        <h3 class="about">You've just uploaded</h3>
+        <p class="kind">Title</p>
+        <p class="value"><%= @paper.title %></p>
+
+        <p class="kind">Authors</p>
+        <p class="value"><%= @paper.authors.first %> <em>et al.</em></p>
+
+        <p class="kind">Year</p>
+        <p class="value"><%= @paper.submitted_at.strftime("%Y") %></p>
+
+        <p class="kind">Submission Date</p>
+        <p class="value"><%= @paper.submitted_at.strftime("%d %B %Y") %></p>
+        
+        <h3><%= check_box_tag('author') %> I am a submitting author</h3>
+        
+        <%= submit_tag("Submit Paper", :class => "green-button") %>
+      </div>
     </div>
   </div>
-  <div class="clear"></div>
+  
+  <div class="right-certified preview">
+    <div class="right-certified">
+      <%= render :partial => "signin_signup" %>
+    </div>
+    <div class="clear"></div>
 </div>

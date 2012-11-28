@@ -1,0 +1,38 @@
+<div id="main-bar">
+</div>
+<div id="main">
+  <div class="left-certified">
+    <%= image_tag "oja_certified.png", :class => "certification-status" %>
+  </div>  
+  <div class="central-certified">
+    <h1>This paper has been peer reviewed<br /> by the Online Journal for Astrophysics.</h1>
+    
+    <h3>What is an Open Journal?</h3>
+    <p>Turducken frankfurter strip steak short ribs short loin, venison spare ribs ham hock beef ribs sirloin drumstick kielbasa jowl. Prosciutto pastrami capicola turducken jowl, flank salami. Doner pastrami capicola ham rump brisket. Fatback leberkas ham bacon frankfurter salami tri-tip.</p>
+    
+    <h3>Why have an Open Journal of Astrophysics?</h3>
+    <p>Turducken frankfurter strip steak short ribs short loin, venison spare ribs ham hock beef ribs sirloin drumstick kielbasa jowl. Prosciutto pastrami capicola turducken jowl, flank salami. Doner pastrami capicola ham rump brisket. Fatback leberkas ham bacon frankfurter salami tri-tip.</p>
+
+  </div>
+  <div class="right-certified">
+    <%= image_tag "fold.png", :class => "fold" %>
+    <h3 class="about">About this paper</h3>
+    <div class="paper">
+      <p class="kind">Title</p>
+      <p class="value"><%= @paper.title %></p>
+      
+      <p class="kind">Author</p>
+      <p class="value"><%= @paper.authors.first %> <em>et al.</em></p>
+      
+      <p class="kind">Year</p>
+      <p class="value"><%= @paper.submitted_at.strftime("%Y") %></p>
+      
+      <p class="kind">Submission Date</p>
+      <p class="value"><%= @paper.submitted_at.strftime("%d %B %Y") %></p>
+      
+      <p class="kind">Review Status</p>
+      <p class="value">Reviewed &amp; Accepted</p>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>

@@ -1,4 +1,6 @@
 class SubmissionsController < ApplicationController
+  before_filter :authenticate_user!, :only => [:dashboard]
+  
   def index
     
   end
@@ -13,7 +15,9 @@ class SubmissionsController < ApplicationController
       paper = Paper.new(:title => manuscript.title,
                         :version => manuscript.version,
                         :arxiv_id => params[:arxiv_id],
-                        :pdf_url => manuscript.pdf_url)
+                        :pdf_url => manuscript.pdf_url,
+                        :authors => manuscript.authors.collect { |a| a.name },
+                        :submitted_at => manuscript.created_at)
       
       paper.save
     end
@@ -23,7 +27,14 @@ class SubmissionsController < ApplicationController
   
   def show
     @paper = Paper.find(params[:id])
-    render :text => @paper.title
+  end
+  
+  def status
+    @paper = Paper.find(params[:id])
+  end
+  
+  def dashboard
+    
   end
   
   def valid_url(arxiv_id)
