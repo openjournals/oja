@@ -53,6 +53,13 @@
         renderPage(pageNum);
       }
 
+      $(".prev").click(function(){ 
+        goPrevious()
+      });
+
+      $(".next").click(function(){ 
+        goNext()
+      });
       //
       // Asynchronously download PDF as an ArrayBuffer
       //
@@ -79,6 +86,8 @@
 
     <div class="paper">
       <div class="paper_preview">
+          <a style='cursor:pointer' class='prev'>prev</a>
+          <a style='cursor:pointer' class='next'>next</a>
           <canvas id="mypdfdoc"></canvas>
       </div>
       <div class="paper_details">
