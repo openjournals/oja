@@ -16,6 +16,8 @@ gem 'devise',                 '2.1'
 gem 'mm-devise',               :git => "https://github.com/pollingj/mm-devise.git"
 gem 'bson_ext'
 gem "omniauth-facebook"
+gem 'rest-client'
+gem 'rack-streaming-proxy'
 
 # Username: ***REMOVED***
 # Password: ***REMOVED***
@@ -30,6 +32,10 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :development do
+  gem 'pry'
 end
 
 group :test do

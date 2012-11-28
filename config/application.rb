@@ -5,6 +5,8 @@ require "action_mailer/railtie"
 require "active_resource/railtie"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
+require "rack/streaming_proxy"
+
 
 
 if defined?(Bundler)
@@ -68,5 +70,14 @@ module Oja
       g.test_framework      :test_unit, fixture_replacement: :fabrication
       g.fixture_replacement :fabrication, dir: "test/fabricators"
     end
+
+
+    config.middleware.use Rack::StreamingProxy do |request|
+      if request.path.start_with?("/proxy")
+        paperID = request.path.split("/").last
+        "http://arxiv.org/pdf/#{paperID}.pdf"
+      end
+    end
+
   end
 end
