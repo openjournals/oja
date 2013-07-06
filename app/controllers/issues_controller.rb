@@ -30,6 +30,7 @@ class IssuesController < ApplicationController
   #   GITHUB_CONNECTION.add_comment(repo_name, issue_id, text, :labels => labels)
   # end
   # expecting {"issue": {"number":"issue_number", "text":"Issue text body", "labels":"c,s,v,separated,labels"}}
+  # /papers/id/issues/id/add_comment
   def add_comment
     issue_number = params[:id]
     text = params[:issue][:text]
