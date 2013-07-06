@@ -66,7 +66,11 @@ Oja::Application.routes.draw do
   end
 
   resources :papers do
-    resources :issues
+    resources :issues do
+      member do
+        put 'add_comment'
+      end
+    end
   end
 
   root :to => 'submissions#index'
