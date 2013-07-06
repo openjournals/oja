@@ -24,8 +24,6 @@ class PaperViewer
   toggle_issues:=>
     @issues_entabled = not @issues_entabled
 
-
-     
   render:=>
     $(@el).append """
       <canvas id = 'paper-#{@paper_id}'></canvas>
@@ -40,6 +38,13 @@ class PaperViewer
         <span class='prev'> ◀ </span>
         <span class='next'> ▶ </span>
       </p>
+
+      <p class='actions'>
+      <a  href='#' class='button reject'>Reject</a>
+        <a  href='#' class='button accept'>Accept</a>
+        <a  href='#' class='button revise'>Revison</a>
+      </p>
+
     """
 
     @setup_events()
@@ -52,9 +57,10 @@ class PaperViewer
       @goNext()
 
     $(@el).click (event)=>
+      event.preventDefault()
       offset = event.offsetY 
-      issue = new Issue({page: @pageNum, offset:offset})
-      issue.renderEditor(@issues_el)
+      issue = new Issue({page: @pageNum, offset:offset}, @issues_el)
+      issue.renderEditor()
 
 
 
@@ -79,17 +85,22 @@ class PaperViewer
       $(".pages .page_no").html  @pageNum
       document.getElementById('page_count').textContent = @pdfDoc.numPages
 
+  switchComments:=>
+    $(".comment").hide()
+    $(".comment-editor").hide()
+    $(".page-#{@pageNum}").show()
 
   goPrevious:=>
     unless (@pageNum <= 1)
       @pageNum -= 1 
       @renderPage(@pageNum)
+      @switchComments()
 
   goNext:=> 
     unless (@pageNum >= @pdfDoc.numPages)
       @pageNum += 1
       @renderPage(@pageNum)
-      
+      @switchComments()      
 
 
 window.PaperViewer = PaperViewer
