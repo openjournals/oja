@@ -65,6 +65,10 @@ Oja::Application.routes.draw do
     end
   end
 
+  resources :papers do
+    resources :issues
+  end
+
   root :to => 'submissions#index'
 
   # See how all your routes lay out with "rake routes"
