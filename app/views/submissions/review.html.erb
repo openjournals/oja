@@ -1,7 +1,7 @@
 <% content_for :head do %>
 	<script type="text/javascript">
 		$("document").ready(function(){
-			pv = new PaperViewer( "1211.3118" , "#paper", "#controll_bar" ,1)
+			pv = new PaperViewer( "1211.3118" , "#paper", "#controll_bar" ,1, true , "#issues")
 		});
 	</script>
 <%end%>
@@ -9,7 +9,9 @@
 <div class='review_interface'>
 	<div id='controll_bar'></div>
 	<div id='paper'></div>
-	<div id='issues'></div>
+	<div id='issues'>
+		<h2>Issues</h2>
+	</div>
 
 </div>
 

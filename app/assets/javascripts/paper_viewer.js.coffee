@@ -1,10 +1,11 @@
 class PaperViewer
 
-  constructor:(paper_id, el, controls_el, scale)->
+  constructor:(paper_id, el, controls_el, scale, issues_entabled=false, @issues_el=null)->
 
     @el = el
     @controls_el = controls_el
     @paper_id = paper_id
+    @issues_enabled = issues_entabled
     @render()
 
     PDFJS.disableWorker = true;
@@ -19,14 +20,15 @@ class PaperViewer
       @renderPage(@pageNum)
       @renderControlls() if @controls_el
       $(".pages .total_pages").html  @pdfDoc.numPages
+
+  toggle_issues:=>
+    @issues_entabled = not @issues_entabled
+
+
      
   render:=>
     $(@el).append """
-      <div class='page_num'></div>
-      <div class='page_count'></div>
       <canvas id = 'paper-#{@paper_id}'></canvas>
-      <div class='prev'></div>
-      <div class='next'></div>
     """
 
   renderControlls:=>
@@ -48,6 +50,14 @@ class PaperViewer
   
     $(".next").click => 
       @goNext()
+
+    $(@el).click (event)=>
+      offset = event.offsetY 
+      issue = new Issue({page: @pageNum, offset:offset})
+      issue.renderEditor(@issues_el)
+
+
+
 
   renderPage:(num)=> 
     #Using promise to fetch the page
