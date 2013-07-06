@@ -30,7 +30,7 @@ class ArxivDownloader
     `cd tmp/#{arxiv_id} && git commit -m 'Adding initial paper'`
     
     `cd tmp/#{arxiv_id} && git remote add origin #{repo.ssh_url}`    
-    `ssh-agent bash -c 'ssh-add -D; ssh-add /Users/arfon/Sites/Adler/oja/config/ssh/***REMOVED***_rsa; cd tmp/#{arxiv_id} && git push -u origin master'`
+    `ssh-agent bash -c 'ssh-add -D; ssh-add config/ssh/***REMOVED***_rsa; cd tmp/#{arxiv_id} && git push -u origin master'`
 
     paper = Paper.find(paper_id)
     paper.github_address = repo.ssh_url
