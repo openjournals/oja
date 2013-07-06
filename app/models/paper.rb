@@ -18,9 +18,7 @@ class Paper
 
   has_many :tasks
 
-  after_create :pull_arxiv_details
-  after_create :make_pngs
-  
+  after_create :pull_arxiv_details  
 
   state_machine :initial => :submitted do 
     state :submitted
@@ -79,9 +77,5 @@ class Paper
   def pull_arxiv_details
     github_address = ArxivDownloader.perform_async(self.arxiv_id, self.id)
     save
-  end
-  
-  def make_pngs
-    PngGenerator.perform_async(self.id, self.pdf_url)
   end
 end
