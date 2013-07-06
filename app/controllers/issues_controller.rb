@@ -13,7 +13,11 @@ class IssuesController < ApplicationController
   def create
     title = params[:issue][:title]
     text = params[:issue][:text]
+    
+    page = params[:issue][:page]
+    offset = params[:issue][:offset]
 
+    title = "page - #{page} offset - #{offset} #{title}"
     begin
       issue = @paper.add_issue(title, text)
       render :json => {:issue_number => issue.number}, :status => :created

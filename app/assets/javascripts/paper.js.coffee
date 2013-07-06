@@ -21,12 +21,13 @@ class Issue
     @offset     = _iss.offset
     @page       = _iss.page
     @el         = el
+    @paper_id   = _iss.paper_id
     @created_at = new Date()
 
     @commentsEnabled = false
 
   update:(text)->
-    $.post("/submissions/#{paper_id}/issues/#{@id}/udpate", text)
+    $.post("/papers/#{@paper_id}/issues", {issue: {title:"issue-#{@id}", text: @body, offset: @offset, page: @page}})
     
   renderEditor:=>
     $(@el).append """
@@ -56,6 +57,8 @@ class Issue
       @body = $(e.currentTarget).siblings("textarea").val()
       $(e.currentTarget).parent().parent().remove()
       @render()
+      @update()
+
 
 
   renderCommentAdder:=>

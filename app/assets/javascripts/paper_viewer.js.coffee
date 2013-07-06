@@ -1,10 +1,11 @@
 class PaperViewer
 
-  constructor:(paper_id, el, controls_el, scale, issues_entabled=false, @issues_el=null, role ="author")->
+  constructor:(paper_id, bson_id, el, controls_el, scale, issues_entabled=false, @issues_el=null, role ="author")->
 
     @el = el
     @controls_el = controls_el
     @paper_id = paper_id
+    @bson_id = bson_id
     @role  = role 
     @issues_enabled = issues_entabled
     @render()
@@ -66,10 +67,8 @@ class PaperViewer
     $(@el).click (event)=>
       event.preventDefault()
       offset = event.offsetY 
-      issue = new Issue({page: @pageNum, offset:offset}, @issues_el)
+      issue = new Issue({paper_id:@bson_id, page: @pageNum, offset:offset}, @issues_el)
       issue.renderEditor()
-
-
 
 
   renderPage:(num)=> 

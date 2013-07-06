@@ -1,7 +1,7 @@
 <% content_for :head do %>
 	<script type="text/javascript">
 		$("document").ready(function(){
-			pv = new PaperViewer( "<%=@paper.arxiv_id%>" , "#paper", "#controll_bar" ,1, true , "#issues", "editor")
+			pv = new PaperViewer( "<%=@paper.arxiv_id%>", "<%=@paper.id%>" , "#paper", "#controll_bar" ,1, true , "#issues", "editor")
 		});
 	</script>
 <%end%>
