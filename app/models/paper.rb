@@ -22,29 +22,51 @@ class Paper
   after_create :make_pngs
   
   state_machine :initial => :submitted do 
-    state :submitted 
+    state :submitted
+    state :under_review
     state :accepted
   end
   
   def arxiv_no
-    self.arxiv_id.split("/").last
+    arxiv_id.split("/").last
+  end
+  
+  def add_issue(title, text)
+    GITHUB_CONNECTION.create_issue(repo_name, title, text, :labels => review_name)
   end
 
   def self.id_from_request_uri(uri)
     uri.split("/").last.split("?").first
   end
 
+  def update_issue(repo_name, issue_id, text, labels=nil)
+    GITHUB_CONNECTION.update_issue(repo_name, issue_id, text, :labels => labels)
+  end
+  
+  def close_issue(issue_id)
+    GITHUB_CONNECTION.close_issue(repo_name, issue_id)
+  end
+
+  def repo_name
+    github_address.match(/:([^\/]+\/.+?)\.git/)[1]
+  end
+
+  def issues
+    GITHUB_CONNECTION.list_issues(repo_name)
+  end
+
+  def review_name
+    "Review ##{version}"
+  end
 
   private
 
-
   def pull_arxiv_details
-    download = ArxivDownloader.perform_async(self.arxiv_id, self.id)
-    self.github_address = download
+    github_address = ArxivDownloader.perform_async(self.arxiv_id, self.id)
     save
   end
   
   def make_pngs
-    # PngGenerator.perform_async(self.id, self.pdf_url)
+    PngGenerator.perform_async(self.id, self.pdf_url)
   end
 end
