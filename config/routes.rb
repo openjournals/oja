@@ -55,6 +55,10 @@ Oja::Application.routes.draw do
     member do
       get 'status'
     end
+
+    member do
+      get 'review'
+    end
     
     collection do
       get 'dashboard'
