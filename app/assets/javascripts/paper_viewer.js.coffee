@@ -1,10 +1,11 @@
 class PaperViewer
 
-  constructor:(paper_id, el, controls_el, scale, issues_entabled=false, @issues_el=null)->
+  constructor:(paper_id, el, controls_el, scale, issues_entabled=false, @issues_el=null, role ="author")->
 
     @el = el
     @controls_el = controls_el
     @paper_id = paper_id
+    @role  = role 
     @issues_enabled = issues_entabled
     @render()
 
@@ -30,7 +31,9 @@ class PaperViewer
     """
 
   renderControlls:=>
-    $(@controls_el).append """
+    
+
+    content = """
       <p class='pages'>
         Page: <span class='page_no'>#{@page_no}</span> of <span class='total_pages'>#{@pdfDoc.numPages}</span>
       </p>
@@ -38,14 +41,18 @@ class PaperViewer
         <span class='prev'> ◀ </span>
         <span class='next'> ▶ </span>
       </p>
-
-      <p class='actions'>
-      <a  href='#' class='button reject'>Reject</a>
-        <a  href='#' class='button accept'>Accept</a>
-        <a  href='#' class='button revise'>Revison</a>
-      </p>
-
     """
+
+    if @role == "editor"
+      content  = content + """
+        <p class='actions'>
+          <a  href='#' class='button reject'>Reject</a>
+          <a  href='#' class='button accept'>Accept</a>
+          <a  href='#' class='button revise'>Revison</a>
+        </p>
+      """
+
+    $(@controls_el).append content
 
     @setup_events()
 

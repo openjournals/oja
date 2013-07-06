@@ -16,11 +16,14 @@ class Issue
   constructor:(_iss, el)->
     @id         = (_iss.id || Math.floor(Math.random()*200000))
     @body       = _iss.body 
+    @comments   = _iss.comments || []
     @created_at = _iss.created_at
     @offset     = _iss.offset
     @page       = _iss.page
     @el         = el
     @created_at = new Date()
+
+    @commentsEnabled = false
 
   update:(text)->
     $.post("/submissions/#{paper_id}/issues/#{@id}/udpate", text)
@@ -40,6 +43,9 @@ class Issue
     """
     @setUpEvents()
 
+  enableComments:=>
+    @commentsEnabled = true 
+
   setUpEvents:=>
     $(" .close").click (e)=>
       e.preventDefault()
@@ -50,6 +56,25 @@ class Issue
       @body = $(e.currentTarget).siblings("textarea").val()
       $(e.currentTarget).parent().parent().remove()
       @render()
+
+
+  renderCommentAdder:=>
+    $(@el).append """
+      <div id='comment-#{@id}' class='comment comment-#{@id} page-#{@page}' style='top:#{@offset}px' data-id='#{@id}'>
+        <div class='header'>
+          <span class='created_at'> #{@created_at} </span>
+          <span class='edit'> edit </span>
+        </div>
+        <div class='body'>
+          #{@body}
+        </div>
+        <div class='comment'>
+          <textarea placeholder='Add your comment here'></textarea>
+          <a class='button add'>Add</a>
+        </div>
+      </div>
+    """
+
 
   render:=>
     
