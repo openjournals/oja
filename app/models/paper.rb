@@ -21,26 +21,41 @@ class Paper
   after_create :pull_arxiv_details
   after_create :make_pngs
   
+
   state_machine :initial => :submitted do 
     state :submitted
     state :under_review
     state :accepted
+
+    after_transition :on => :accept, :do => :resolve_all_issues
+
+    event :accept do
+      transition all => :accepted
+    end
   end
   
   def arxiv_no
     arxiv_id.split("/").last
-  end
-  
-  def add_issue(title, text)
-    GITHUB_CONNECTION.create_issue(repo_name, title, text, :labels => review_name)
   end
 
   def self.id_from_request_uri(uri)
     uri.split("/").last.split("?").first
   end
 
-  def update_issue(repo_name, issue_id, text, labels=nil)
-    GITHUB_CONNECTION.update_issue(repo_name, issue_id, text, :labels => labels)
+  def resolve_all_issues
+    issues.each { |i| close_issue(i.number) }
+  end
+  
+  def add_issue(title, text)
+    GITHUB_CONNECTION.create_issue(repo_name, title, text, :labels => review_name)
+  end
+
+  def update_issue(issue_id, title, text, labels=nil)
+    GITHUB_CONNECTION.update_issue(repo_name, issue_id, title, text, :labels => labels)
+  end
+
+  def add_comment_to_issue(issue_id, text, labels=nil)
+    GITHUB_CONNECTION.add_comment(repo_name, issue_id, text, :labels => labels)
   end
   
   def close_issue(issue_id)
