@@ -26,11 +26,11 @@ class SubmissionsController < ApplicationController
   end
   
   def show
-    @paper = Paper.find(params[:id])
+    @paper = Paper.find(params[:id]) || Paper.where(arxiv_id: params[:id]).first 
   end
   
   def status
-    @paper = Paper.find(params[:id])
+    @paper =  Paper.find(params[:id]) || Paper.where(arxiv_id: params[:id]).first 
   end
   
   def dashboard
