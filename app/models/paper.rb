@@ -30,6 +30,10 @@ class Paper
     self.arxiv_id.split("/").last
   end
 
+  def self.id_from_request_uri(uri)
+    uri.split("/").last.split("?").first
+  end
+
 
   private
 

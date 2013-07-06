@@ -24,13 +24,25 @@ class SubmissionsController < ApplicationController
     
     redirect_to :action => "show", :id => paper.id
   end
+
+  def review
+    @paper = Paper.find(params[:id]) || Paper.where(arxiv_id: Paper.id_from_request_uri(request.env["REQUEST_URI"])).first 
+    raise ActionController::RoutingError.new('Not Found')  unless @paper 
+  end
+
+  def respond 
+    @paper = Paper.find(params[:id]) || Paper.where(arxiv_id: Paper.id_from_request_uri(request.env["REQUEST_URI"])).first 
+    raise ActionController::RoutingError.new('Not Found')  unless @paper 
+  end
   
   def show
-    @paper = Paper.find(params[:id]) || Paper.where(arxiv_id: params[:id]).first 
+    @paper = Paper.find(params[:id]) || Paper.where(arxiv_id: Paper.id_from_request_uri(request.env["REQUEST_URI"])).first 
+    raise ActionController::RoutingError.new('Not Found')  unless @paper 
   end
   
   def status
-    @paper =  Paper.find(params[:id]) || Paper.where(arxiv_id: params[:id]).first 
+    @paper =  Paper.find(params[:id]) || Paper.where(arxiv_id: Paper.id_from_request_uri(request.env["REQUEST_URI"])).first 
+    raise ActionController::RoutingError.new('Not Found')  unless @paper 
   end
   
   def dashboard
