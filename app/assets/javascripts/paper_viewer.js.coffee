@@ -59,14 +59,15 @@ class PaperViewer
         <span class='next'> ▶ </span>
       </p>
 
+
       <p  class='right review_stage'> Review round : #{@paper.current_review_number} </p>
       <p  class='right issue_count'> Outstanding issues : <span class='issue_count_no'>0</span> </p>
 
     """
-
+    @role = "editor"
     if @role == "editor"
       content  = content + """
-        <p class='actions'>
+        <p class='right actions'>
           <a  href='#' class='button reject'>Reject</a>
           <a  href='#' class='button accept'>Accept</a>
           <a  href='#' class='button revise'>Revison</a>
