@@ -1,11 +1,14 @@
 class PaperViewer
 
-  constructor:(paper_id, bson_id, el, controls_el, scale, issues_entabled=false, @issues_el=null, role ="author")->
+  constructor:(paper, el, controls_el, scale, issues_entabled=false, @issues_el=null, role ="author")->
 
     @el = el
     @controls_el = controls_el
-    @paper_id = paper_id
-    @bson_id = bson_id
+    @paper  = paper 
+    
+    @paper_id = paper.arxiv_id
+    @bson_id = paper.id
+
     @role  = role 
     @issues_enabled = issues_entabled
     @render()
@@ -17,11 +20,14 @@ class PaperViewer
     @canvas = document.getElementById("paper-#{@paper_id}")
     @ctx = @canvas.getContext('2d')
 
+
     PDFJS.getDocument("/proxy/#{@paper_id}").then (pdfDoc)=>
       @pdfDoc = pdfDoc
       @renderPage(@pageNum)
       @renderControlls() if @controls_el
       $(".pages .total_pages").html  @pdfDoc.numPages
+      @paper.fetch_issues @renderIssues
+
 
   toggle_issues:=>
     @issues_entabled = not @issues_entabled
@@ -30,6 +36,12 @@ class PaperViewer
     $(@el).append """
       <canvas id = 'paper-#{@paper_id}'></canvas>
     """
+
+  renderIssues:=>
+    for issue in @paper.issues
+      issue.el = @issues_el
+      issue.render()
+    @switchComments()
 
   renderControlls:=>
     

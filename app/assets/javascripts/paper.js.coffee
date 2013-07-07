@@ -1,104 +1,23 @@
 class Paper 
 
-  constructor:(paper_id)->
-    @paper_id = paper_id 
+  constructor:(paper)->
+    for key,val of paper 
+      @[key] = val  
 
-  fetch_issues:=>
+
+  fetch_issues: (cb)=>
     @issues = []
-    $.getJSON("/submissions/#{paper_id}/issues") (data)=>
+    console.log "fetching issues"
+
+    $.getJSON "/papers/#{@id}/issues", (data)=>
+      console.log "data comming back",data
       for issue in data 
-        @issues.push new Issue(issue)
-   
-  
+        @issues.push(new Issue(issue))
+      cb() if cb
 
-class Issue
-
-  constructor:(_iss, el)->
-    @id         = (_iss.id || Math.floor(Math.random()*200000))
-    @body       = _iss.body 
-    @comments   = _iss.comments || []
-    @created_at = _iss.created_at
-    @offset     = _iss.offset
-    @page       = _iss.page
-    @el         = el
-    @paper_id   = _iss.paper_id
-    @created_at = new Date()
-
-    @commentsEnabled = false
-
-  update:(text)->
-    $.post("/papers/#{@paper_id}/issues", {issue: {title:"issue-#{@id}", text: @body, offset: @offset, page: @page}})
-    
-  renderEditor:=>
-    $(@el).append """
-      <div class='comment_editor comment-#{@id} page-#{@page}' style='top:#{@offset}px' data-id="#{@id}">
-        <div class='header'>
-          <span>New issue</span>
-          <span class='close'>x</span>
-        </div>
-        <div class='body'>
-          <textarea placeholder='Write your issue here...'></textarea>
-          <a href='#' class='button add'>Add </a>
-        </div>
-      </div>
-    """
-    @setUpEvents()
-
-  enableComments:=>
-    @commentsEnabled = true 
-
-  setUpEvents:=>
-    $(" .close").click (e)=>
-      e.preventDefault()
-      $(e.currentTarget).parent().parent().remove()
-
-    $(".add").click (e)=>
-      e.preventDefault()
-      @body = $(e.currentTarget).siblings("textarea").val()
-      $(e.currentTarget).parent().parent().remove()
-      @render()
-      @update()
-
-
-
-  renderCommentAdder:=>
-    $(@el).append """
-      <div id='comment-#{@id}' class='comment comment-#{@id} page-#{@page}' style='top:#{@offset}px' data-id='#{@id}'>
-        <div class='header'>
-          <span class='created_at'> #{@created_at} </span>
-          <span class='edit'> edit </span>
-        </div>
-        <div class='body'>
-          #{@body}
-        </div>
-        <div class='comment'>
-          <textarea placeholder='Add your comment here'></textarea>
-          <a class='button add'>Add</a>
-        </div>
-      </div>
-    """
-
-
-  render:=>
-    
-    $(@el).append """
-      <div id='comment-#{@id}' class='comment comment-#{@id} page-#{@page}' style='top:#{@offset}px' data-id='#{@id}'>
-        <div class='header'>
-          <span class='created_at'> #{@created_at} </span>
-          <span class='edit'> edit </span>
-        </div>
-        <div class='body'>
-          #{@body}
-        </div>
-      </div>
-    """
-
-    setTimeout =>
-      MathJax.Hub.Queue(["Typeset",MathJax.Hub,  document.getElementById("comment-#{@id}")]);
-    ,200
-
+  add_issue:(issue)=>
+    @issues.push issue 
 
 window.Paper = Paper
-window.Issue = Issue
 
 
