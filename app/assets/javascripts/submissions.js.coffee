@@ -10,9 +10,12 @@ $ ->
     val = $(this).val()
     if val is ""
       $(this).val($(this).attr('data-original-text'))
+  
+  $(".tab.submit").click -> 
+    window.location.replace('/submissions/new')
 
   $(".tab.view").click -> 
-    window.location.replace('/submissions')
+    window.location.replace('/submissions/dashboard')
 
   $(".tab.edit").click -> 
     window.location.replace('/submissions')
