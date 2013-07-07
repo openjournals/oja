@@ -18,6 +18,8 @@ class SubmissionsController < ApplicationController
                         :pdf_url => manuscript.pdf_url,
                         :authors => manuscript.authors.collect { |a| a.name },
                         :submitted_at => manuscript.created_at)
+
+      paper.submitting_author_id = current_user.id
       
       paper.save
     end

@@ -12,11 +12,11 @@ class Paper
   key :pngs_generated, Boolean
   key :authors, Array
   key :submitted_at, DateTime
+  key :submitting_author_id, ObjectId
 
   scope :under_review, :state => 'under_review'
 
   # has_many   :authors, :in => :author_ids
-  # has_one    :submitting_author
   # belongs_to :reviewer
 
   has_many :tasks
@@ -35,6 +35,10 @@ class Paper
     end
   end
   
+  def submitting_author
+    User.first(:id => submitting_author_id)  
+  end
+
   def arxiv_no
     arxiv_id.split("/").last
   end
