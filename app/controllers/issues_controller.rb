@@ -4,9 +4,8 @@ class IssuesController < ApplicationController
   before_filter :find_paper
 
   def index
-    issues = @paper.issues
+    issues = @paper.issues_and_comments
 
-    # get the issues and the comments
     respond_with issues
   end
 

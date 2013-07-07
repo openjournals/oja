@@ -75,8 +75,33 @@ class Paper
     github_address.match(/:([^\/]+\/.+?)\.git/)[1]
   end
 
+  def all_comments
+    GITHUB_CONNECTION.issues_comments(repo_name)
+  end
+
+  # TODO - this only returns open issues
   def issues
     GITHUB_CONNECTION.list_issues(repo_name)
+  end
+
+  def issues_and_comments
+    returned_issues = self.issues
+
+    returned_issues.each do |issue|
+      issue_url = issue.url
+      issue['comments'] = []
+
+      all_comments.each do |comment|
+        # if the comment belongs to this issue
+        if comment.issue_url == issue_url
+          issue['comments'] << comment
+        end
+      end
+
+      issue['comments'].sort_by { |comment| comment['id']}
+    end
+
+    return returned_issues
   end
 
   def review_name
