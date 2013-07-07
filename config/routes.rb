@@ -69,6 +69,7 @@ Oja::Application.routes.draw do
     resources :issues do
       member do
         put 'add_comment'
+        put 'close'
       end
     end
   end
