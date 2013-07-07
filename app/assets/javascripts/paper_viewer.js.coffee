@@ -58,6 +58,10 @@ class PaperViewer
         <span class='prev'> ◀ </span>
         <span class='next'> ▶ </span>
       </p>
+
+      <p  class='right review_stage'> Review round : #{@paper.current_review_number} </p>
+      <p  class='right issue_count'> Outstanding issues : <span class='issue_count_no'>0</span> </p>
+
     """
 
     if @role == "editor"

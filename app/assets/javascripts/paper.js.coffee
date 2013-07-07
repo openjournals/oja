@@ -14,6 +14,7 @@ class Paper
       for issue in data 
         issue.paper_id = @id
         @issues.push(new Issue(issue))
+      $(".issue_count_no").html @issues.length
       cb() if cb
 
   add_issue:(issue)=>
