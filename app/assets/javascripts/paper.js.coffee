@@ -10,8 +10,9 @@ class Paper
     console.log "fetching issues"
 
     $.getJSON "/papers/#{@id}/issues", (data)=>
-      console.log "data comming back",data
+      
       for issue in data 
+        issue.paper_id = @id
         @issues.push(new Issue(issue))
       cb() if cb
 

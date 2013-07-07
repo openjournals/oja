@@ -38,7 +38,7 @@ class IssuesController < ApplicationController
 
     begin
       issue = @paper.add_comment_to_issue(issue_number, text)
-      render :json => {:issue_number => issue_number}, :status => :updated
+      render :json => {:issue_number => issue.number}, :status => :created
     rescue => e
       respond_with @paper, :status => :internal_server_error
     end
