@@ -1,6 +1,6 @@
 class PaperViewer
 
-  constructor:(paper, el, controls_el, scale, issues_entabled=false, @issues_el=null, role ="author")->
+  constructor:(paper, el, controls_el, scale, issues_entabled=false, @issues_el=null, @issue_list_el=null, role ="author")->
 
     @el = el
     @controls_el = controls_el
@@ -41,7 +41,11 @@ class PaperViewer
     for issue in @paper.issues
       issue.el = @issues_el
       issue.render()
-    @switchComments()
+      # @issue_list_el.append issue.render()
+
+    @switchIssues()
+
+  
 
   renderControlls:=>
     
@@ -103,22 +107,22 @@ class PaperViewer
       $(".pages .page_no").html  @pageNum
       document.getElementById('page_count').textContent = @pdfDoc.numPages
 
-  switchComments:=>
-    $(".comment").hide()
-    $(".comment-editor").hide()
+  switchIssues:=>
+    $(".issue").hide()
+    $(".issue-editor").hide()
     $(".page-#{@pageNum}").show()
 
   goPrevious:=>
     unless (@pageNum <= 1)
       @pageNum -= 1 
       @renderPage(@pageNum)
-      @switchComments()
+      @switchIssues()
 
   goNext:=> 
     unless (@pageNum >= @pdfDoc.numPages)
       @pageNum += 1
       @renderPage(@pageNum)
-      @switchComments()      
+      @switchIssues()      
 
 
 window.PaperViewer = PaperViewer

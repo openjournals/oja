@@ -2,10 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#global_issues
+	width: 100%
+	margin-top: 20px
+	text-align: center
+	background-color: #F7F7F7
+	h2
+		color: #A3B155
+		font-size: 20px
+
+
 .review_interface
 	background-color: #F5F5F5
 	min-width: 1000px
 	min-height: 845px
+	margin-top: 30px
+
+
 
 	#controll_bar
 		background-color: #EAEAEA
@@ -47,11 +60,12 @@
 			color: #069BD8
 			text-transform: uppercase
 
-.comment
+.issue
 	width: 100%
 	border: 1px solid #90A535
 	background-color: #B0CC43
 	position: absolute
+	border-radius: 2px
 	.header 
 		width: 100%
 		background-color: #90A535
@@ -63,9 +77,30 @@
 		width: 100%
 		box-sizing: border-box
 		padding: 20px 10px 20px 10px
+		position: relative
+		a.comment 
+			width: 50px
+			right: 10px
+			bottom: 5px
+			color: white 
+			border: none
+			position: absolute
+			cursor: pointer
+	.commentAdder 
+		width: 100% 
+		border-top: 1px solid #90A535
+
+		textarea
+			width: 90%
+		a.addComment
+			color: white
+			width: 100% 
+			text-align: right
+			cursor: pointer	
 
 
-.comment_editor
+
+.issue_editor
 	width: 100%
 	height: 230px 
 	border: 1px solid #D2D2D2
@@ -101,3 +136,5 @@
 			line-height: 24px
 			box-shadow: 1px 1px 2px black
 			float: right
+
+			
