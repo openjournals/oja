@@ -13,10 +13,12 @@
 <body>
   <div id="center">
     <%= link_to((image_tag "oja_logo.jpg"), root_url) %>
+    <div id="main-bar">
+      <% if current_user %> 
+      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+      <% end %> 
+    </div>
     <%= yield %>
   </div>
-  <% if current_user %> 
-  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  <% end %> 
 </body>
 </html>

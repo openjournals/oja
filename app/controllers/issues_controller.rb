@@ -6,6 +6,7 @@ class IssuesController < ApplicationController
   def index
     issues = @paper.issues
 
+    # get the issues and the comments
     respond_with issues
   end
 
@@ -51,7 +52,7 @@ class IssuesController < ApplicationController
 
     begin
       issue = @paper.close_issue(issue_number)
-      render :json => {:issue_number => issue_number}, :status => :updated
+      render :json => {:issue_number => issue_number}, :status => :created
     rescue => e
       respond_with @paper, :status => :internal_server_error
     end
