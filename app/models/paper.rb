@@ -47,6 +47,7 @@ class Paper
     issues.each { |i| close_issue(i.number) }
   end
 
+  # Might not want to do this
   def mark_all_issues_pending(new_version_id)
     issues.each do |i|
       add_comment_to_issue(i.number, "New ArXiv version detected (#{new_version_id})")

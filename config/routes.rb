@@ -74,7 +74,7 @@ Oja::Application.routes.draw do
     end
   end
 
-  root :to => 'submissions#index'
+  root :to => 'submissions#new'
 
   # See how all your routes lay out with "rake routes"
 

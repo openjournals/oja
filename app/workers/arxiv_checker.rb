@@ -8,7 +8,8 @@ class ArxivChecker
       
       if paper.version != current_arxiv_id
         puts "Version has changed"
-        paper.mark_all_issues_pending(current_arxiv_id)
+
+        
       end
     end
   end
