@@ -127,13 +127,13 @@ class PaperViewer
     $(".page-#{@pageNum}").show()
 
   goPrevious:=>
-    unless (@pageNum <= 1)
+    unless (@pageNum <= 1) or !$(".toggle_paper_view").hasClass('active')
       @pageNum -= 1 
       @renderPage(@pageNum)
       @switchIssues()
 
   goNext:=> 
-    unless (@pageNum >= @pdfDoc.numPages)
+    unless (@pageNum >= @pdfDoc.numPages) or !$(".toggle_paper_view").hasClass('active')
       @pageNum += 1
       @renderPage(@pageNum)
       @switchIssues()      

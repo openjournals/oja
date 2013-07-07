@@ -7,7 +7,6 @@ class Paper
 
   fetch_issues: (cb)=>
     @issues = []
-    console.log "fetching issues"
 
     $.getJSON "/papers/#{@id}/issues", (data)=>
       
@@ -15,6 +14,9 @@ class Paper
         issue.paper_id = @id
         @issues.push(new Issue(issue))
       $(".issue_count_no").html @issues.length
+      @issues = _.sortBy @issues, (issue)->
+        (issue.page*1000 + issue.offset)
+
       cb() if cb
 
   add_issue:(issue)=>
