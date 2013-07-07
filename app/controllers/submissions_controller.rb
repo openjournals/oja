@@ -1,5 +1,5 @@
 class SubmissionsController < ApplicationController
-  before_filter :authenticate_user!, :only => [:dashboard]
+  before_filter :authenticate_user!, :only => [:dashboard, :new]
   
   def index
     

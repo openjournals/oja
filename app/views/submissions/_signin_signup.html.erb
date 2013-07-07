@@ -5,6 +5,7 @@
     <%= form_tag('/users') do %>
       <%= text_field_tag "user[email]", "Email address", "data-original-text" => "Email address", :class => "auto-replace" %>
       <%= password_field_tag "user[password]", "password", "data-original-text" => "password", :class => "auto-replace" %>
+      
       <%= submit_tag("Create Account", :class => "grey-button") %>
     <%- end -%>
   </div>
