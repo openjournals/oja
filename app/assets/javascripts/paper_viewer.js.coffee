@@ -57,6 +57,7 @@ class PaperViewer
       <p class='next_prev'>
         <span class='prev'> ◀ </span>
         <span class='next'> ▶ </span>
+        <span class='toggle_paper_view active'>☱</span>
       </p>
 
 
@@ -90,6 +91,14 @@ class PaperViewer
       offset = event.offsetY 
       issue = new Issue({paper_id:@bson_id, page: @pageNum, offset:offset}, @issues_el)
       issue.renderEditor()
+
+    $(".toggle_paper_view").click =>
+      $(".toggle_paper_view").toggleClass("active")
+      $(".review_interface").toggleClass("hide_paper")
+      if $(".toggle_paper_view").hasClass('active')
+        @switchIssues()
+      else 
+        $(".issue").show()
 
 
   renderPage:(num)=> 

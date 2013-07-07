@@ -12,13 +12,28 @@
 		font-size: 20px
 
 
+.review_interface.hide_paper 
+	.inner-content 
+		margin-left: -617px 
+	#issues 
+		width: 1000px
+		.issue
+			display: block
+			position: static
+			margin-bottom: 20px
+
 .review_interface
 	background-color: #F5F5F5
 	min-width: 1000px
 	min-height: 845px
 	margin-top: 30px
+	overflow-x: hidden
 
-
+	.inner-content
+		width: 20000px
+		transition: all 2s
+		-webkit-transition: all 2s
+	
 
 	#controll_bar
 		background-color: #EAEAEA
@@ -31,8 +46,10 @@
 		p
 			display: inline-block
 			vertical-align: middle 
-		.prev, .next
+		.prev, .next, .toggle_paper_view
 			cursor: pointer 
+			&.active
+				color: #069bd8
 		.actions
 			a
 				text-decoration: none
@@ -50,12 +67,18 @@
 		display: inline-block
 		vertical-align: top
 		min-width: 612px
+		
+		&.shown
+			display: none
+
 	#issues
 		display: inline-block
 		vertical-align: top
 		width: 383px
 		box-sizing: border-box
 		position: relative 
+		transition: all 2s
+		-webkit-transition: all 2s
 		h2 
 			margin-left: 20px
 			color: #069BD8
