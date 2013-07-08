@@ -14,12 +14,9 @@ class Issue
 
     @comments ||= []
 
-
   update:(text)->
     $.post("/papers/#{@paper_id}/issues", {issue: {title:"issue-#{@id}", text: @body, offset: @offset, page: @page}})
-  
-  sort:=>
-    
+
 
   formatedDate:=>
     @created_at 
@@ -73,6 +70,19 @@ class Issue
       @render()
       # @update()
 
+    $("#issue-#{@id} .close_issue").click (e)=>
+      @closeIssue()
+      @state = "closed"
+      $("#issue-#{@id}").remove()
+      @render()
+
+
+  closeIssue:=>
+    $.ajax
+      url: "/papers/#{@paper_id}/issues/#{@number}/close"
+      data: {}
+      type: "PUT"
+
   saveComment:(comment)=>
     @comments.push {body: comment}
 
@@ -117,17 +127,20 @@ class Issue
     """
 
 
+
+
   render:=>
 
-    if @commentsEnabled
+    if @state=='open' 
       button = "<a class='button comment'>Comment</a>"
     else 
-      button = "<a class='button comment'>Comment</a>"
+      button = ""
 
     $(@el).append """
-      <div id='issue-#{@id}' class='issue issue-#{@id} page-#{@page}' style='top:#{@offset}px' data-id='#{@id}'>
+      <div id='issue-#{@id}' class='issue issue-#{@id} page-#{@page} #{@state} ' style='top:#{@offset}px' data-id='#{@id}'>
         <div class='header'>
-          <span class='created_at'> #{@created_at} </span>
+          <span class='created_at'> #{moment(@created_at).format('MMMM Do YYYY, h:mm:ss a')} </span>
+          <span class='close_issue'>#{ if @state=='open' then "close issue" else ""  }</span>
         </div>
         <div class='body'>
           #{@body}

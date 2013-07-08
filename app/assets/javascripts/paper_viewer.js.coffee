@@ -89,7 +89,7 @@ class PaperViewer
     $(@el).click (event)=>
       event.preventDefault()
       offset = event.offsetY 
-      issue = new Issue({paper_id:@bson_id, page: @pageNum, offset:offset}, @issues_el)
+      issue = new Issue({paper_id:@bson_id, page: @pageNum, offset:offset, state: "open"}, @issues_el)
       issue.renderEditor()
 
     $(".toggle_paper_view").click =>

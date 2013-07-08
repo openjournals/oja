@@ -3,177 +3,189 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #global_issues
-	width: 100%
-	margin-top: 20px
-	text-align: center
-	background-color: #F7F7F7
-	h2
-		color: #A3B155
-		font-size: 20px
+  width: 100%
+  margin-top: 20px
+  text-align: center
+  background-color: #F7F7F7
+  h2
+    color: #A3B155
+    font-size: 20px
 
 
 .review_interface.hide_paper 
-	.inner-content 
-		margin-left: -617px 
-	#issues 
-		width: 1000px
-		.issue
-			display: block
-			position: static
-			margin-bottom: 20px
-			.commentList
-				max-height: 10000px
+  .inner-content 
+    margin-left: -617px 
+  #issues 
+    width: 1000px
+    .issue
+      display: block
+      position: static
+      margin-bottom: 20px
+      .commentList
+        max-height: 10000px
 
 .review_interface
-	background-color: #F5F5F5
-	min-width: 1000px
-	min-height: 845px
-	margin-top: 30px
-	overflow-x: hidden
+  background-color: #F5F5F5
+  min-width: 1000px
+  min-height: 845px
+  margin-top: 30px
+  overflow-x: hidden
 
-	.inner-content
-		width: 20000px
-		transition: all 2s
-		-webkit-transition: all 2s
-	
+  .inner-content
+    width: 20000px
+    transition: all 2s
+    -webkit-transition: all 2s
+  
 
-	#controll_bar
-		background-color: #EAEAEA
-		width: 100%
-		height: 50px 
-		border: 1 px solid #D2D2D2
-		box-sizing: border-box 
-		padding: 8px 20px 
-		position: relative
-		p
-			display: inline-block
-			vertical-align: middle 
-		.prev, .next, .toggle_paper_view
-			cursor: pointer 
-			&.active
-				color: #069bd8
-		.actions
-			a
-				text-decoration: none
-				margin-left: 10px
-			.reject
-				color: #962F37
-			.accept
-				color: #B0CC43
-			.revise
-				color: #FFAC3C
-		.right
-			float: right
-			margin-left: 20px
-	#paper 
-		display: inline-block
-		vertical-align: top
-		min-width: 612px
-		
-		&.shown
-			display: none
+  #controll_bar
+    background-color: #EAEAEA
+    width: 100%
+    height: 50px 
+    border: 1 px solid #D2D2D2
+    box-sizing: border-box 
+    padding: 8px 20px 
+    position: relative
+    p
+      display: inline-block
+      vertical-align: middle 
+    .prev, .next, .toggle_paper_view
+      cursor: pointer 
+      &.active
+        color: #069bd8
+    .actions
+      a
+        text-decoration: none
+        margin-left: 10px
+      .reject
+        color: #962F37
+      .accept
+        color: #B0CC43
+      .revise
+        color: #FFAC3C
+    .right
+      float: right
+      margin-left: 20px
+  #paper 
+    display: inline-block
+    vertical-align: top
+    min-width: 612px
+    
+    &.shown
+      display: none
 
-	#issues
-		display: inline-block
-		vertical-align: top
-		width: 383px
-		box-sizing: border-box
-		position: relative 
-		transition: all 2s
-		-webkit-transition: all 2s
-		h2 
-			margin-left: 20px
-			color: #069BD8
-			text-transform: uppercase
+  #issues
+    display: inline-block
+    vertical-align: top
+    width: 383px
+    box-sizing: border-box
+    position: relative 
+    transition: all 2s
+    -webkit-transition: all 2s
+    h2 
+      margin-left: 20px
+      color: #069BD8
+      text-transform: uppercase
 
 .issue
-	width: 100%
-	border: 1px solid #90A535
-	background-color: #B0CC43
-	position: absolute
-	border-radius: 2px
-	.header 
-		width: 100%
-		background-color: #90A535
-		color: white
-		height: 20px 
-		box-sizing: border-box
-		padding: 2px 10px 
-	.body 
-		width: 100%
-		box-sizing: border-box
-		padding: 20px 10px 20px 10px
-		position: relative
-		a.comment 
-			width: 50px
-			right: 10px
-			bottom: 5px
-			color: white 
-			border: none
-			position: absolute
-			cursor: pointer
-	.commentAdder 
-		width: 100% 
-		border-top: 1px solid #90A535
+  width: 100%
+  position: absolute
+  border-radius: 2px
+  &.open
+    border: 1px solid #90A535
+    background-color: #B0CC43
+    .header
+      background-color: #90A535
 
-		textarea
-			width: 90%
-		a.addComment
-			color: white
-			width: 100% 
-			text-align: right
-			cursor: pointer	
-	.commentList
-		max-height: 50px
-		padding: 0px 10px 20px 10px
-		overflow-y: scroll
-		li
-			border-bottom: 1px #90A535 dotted
-			margin: 5px 0px 5px 0px
+  &.closed 
+    border: 1px solid #EB8434
+    background-color: #FFAC3C
+    .header
+      background-color: #EA8535
+  .header 
+    width: 100%
+    color: white
+    height: 20px 
+    box-sizing: border-box
+    padding: 2px 10px 
+    .close_issue
+      float: right
+      color: #ffac3c 
+      cursor: pointer
+  .body 
+    width: 100%
+    box-sizing: border-box
+    padding: 20px 10px 20px 10px
+    position: relative
+    a.comment 
+      width: 50px
+      right: 10px
+      bottom: 5px
+      color: white 
+      border: none
+      position: absolute
+      cursor: pointer
+  .commentAdder 
+    width: 100% 
+    border-top: 1px solid #90A535
 
-		li:nth-child(2n)
-			background-color: #F5F5F5
-		li:nth-child(2n+1)
-			background-color: #FBFBFB
+    textarea
+      width: 90%
+    a.addComment
+      color: white
+      width: 100% 
+      text-align: right
+      cursor: pointer 
+  .commentList
+    max-height: 50px
+    padding: 0px 10px 20px 10px
+    overflow-y: scroll
+    li
+      border-bottom: 1px #90A535 dotted
+      margin: 5px 0px 5px 0px
+
+    li:nth-child(2n)
+      background-color: #F5F5F5
+    li:nth-child(2n+1)
+      background-color: #FBFBFB
 
 
 
 
 .issue_editor
-	width: 100%
-	height: 230px 
-	border: 1px solid #D2D2D2
-	background-color: #E4E4E4
-	position: absolute
-	.header 
-		width: 100%
-		background-color: #BABABA
-		color: white
-		height: 20px 
-		box-sizing: border-box
-		padding: 2px 10px 
-		.close 
-			float: right
-			cursor: pointer
-	.body 
-		height: 210px 
-		width: 100%
-		box-sizing: border-box
-		padding: 20px 10px 20px 10px
+  width: 100%
+  height: 230px 
+  border: 1px solid #D2D2D2
+  background-color: #E4E4E4
+  position: absolute
+  .header 
+    width: 100%
+    background-color: #BABABA
+    color: white
+    height: 20px 
+    box-sizing: border-box
+    padding: 2px 10px 
+    .close 
+      float: right
+      cursor: pointer
+  .body 
+    height: 210px 
+    width: 100%
+    box-sizing: border-box
+    padding: 20px 10px 20px 10px
 
-		textarea 
-			width: 98%
-			height: 150px
+    textarea 
+      width: 98%
+      height: 150px
 
-		a.button
-			display: block
-			width: 64px 
-			height: 24px 
-			text-decoration: none
-			color: #565656
-			text-align: center 
-			line-height: 24px
-			box-shadow: 1px 1px 2px black
-			float: right
+    a.button
+      display: block
+      width: 64px 
+      height: 24px 
+      text-decoration: none
+      color: #565656
+      text-align: center 
+      line-height: 24px
+      box-shadow: 1px 1px 2px black
+      float: right
 
-			
+      
