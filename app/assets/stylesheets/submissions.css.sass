@@ -23,6 +23,11 @@
       margin-bottom: 20px
       .commentList
         max-height: 10000px
+        li
+          width: 987px 
+          
+        .comment_header, .comment_body 
+          width: 967px
 
 .review_interface
   background-color: #F5F5F5
@@ -158,6 +163,8 @@
       box-sizing: border-box
       margin-left: 6px
       background: #efefef
+      transition: all 2s
+      -webkit-transition: all 2s
       
       .comment_header
         display: block
@@ -167,11 +174,15 @@
         background: #c1c1c1
         padding: 5px 10px
         width: 350px
+        transition: all 2s
+        -webkit-transition: all 2s
 
       .comment_body
         display: block
         margin-left: -5px
         padding: 10px 5px
+        transition: all 2s
+        -webkit-transition: all 2s
 
 
     li:nth-child(2n)
