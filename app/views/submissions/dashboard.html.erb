@@ -1,27 +1,30 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+    papers = <%= raw @papers.to_json %>;
+
+
+  </script>
+<%end%>
+
 <div id="main">
   <div class="left-tabs">
     <div class="tab submit"><h3>Submit a paper</h3></div>
     <div class="tab view active"><h3>Dashboard</h3></div>
     <div class="tab edit"><h3>Edit papers</h3></div>
   </div>
+  <div class="central-certified dashboard">
+    <ul>
+    <% @papers.each do |paper| -%>
+      <li><%= image_tag paper.cover_image, :class => "cover_image", :id => "#{paper.id}" %></li>
+    <% end %>
+    </ul>
+  </div>
   <div class="right-certified">
     <%= image_tag "fold.png", :class => "fold" %>
-    <h3 class="about">About this paper</h3>
+    <h3 class="about dashboard">About this paper</h3>
+
     <div class="paper">
-      <p class="kind">Title</p>
-      <p class="value">Galaxy Zoo: Bulgeless Galaxies with Growing Black Holes</p>
-      
-      <p class="kind">Author</p>
-      <p class="value">Lintott, C. J. et al</p>
-      
-      <p class="kind">Year</p>
-      <p class="value">2009</p>
-      
-      <p class="kind">Submission Date</p>
-      <p class="value">1 November 2012</p>
-      
-      <p class="kind">Review Status</p>
-      <p class="value">Reviewed &amp; Accepted</p>
+      <p>Select a paper on the left to view more details.</p>
     </div>
   </div>
   <div class="clear"></div>

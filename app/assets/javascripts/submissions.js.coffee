@@ -19,4 +19,28 @@ $ ->
 
   $(".tab.edit").click -> 
     window.location.replace('/submissions')
-        
+  
+  $(".cover_image").click (e)->
+    el = $(e.currentTarget)
+    $('.cover_image').removeClass('selected')
+    el.addClass('selected')
+    paper = (paper for paper in papers when paper.id == el.attr("id"))[0]
+    $(".paper").html """
+      <p class="kind">Title</p>
+      <p class="value">#{paper.title}</p>
+      
+      <p class="kind">Author</p>
+      <p class="value">#{paper.pretty_author}</p>
+
+      <p class="kind">Category</p>
+      <p class="value">#{paper.category}</p>
+      
+      <p class="kind">Submission Date</p>
+      <p class="value">#{paper.pretty_submission_date}</p>
+      
+      <p class="kind">Review Status</p>
+      <p class="value">#{paper.pretty_status}</p>
+
+      <a href="#" class="review-button">Begin Review</a>
+
+    """

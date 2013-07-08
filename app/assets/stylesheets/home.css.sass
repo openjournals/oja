@@ -89,7 +89,31 @@
     padding: $column-size/2 $gutter-size*2 $column-size/2 0
     float: left
     margin: 0px
-    
+
+    &.dashboard
+      width: ($column-size * 7) + ($gutter-size * 4)
+      padding-left: $gutter-size * 2
+
+      ul
+        li
+          display: inline
+          margin-right: $gutter-size
+
+      .cover_image
+        width: 110px
+        border: 1px solid #e2e2e2
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1)
+        -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1)
+        -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1)
+
+        &.selected
+          border: 1px solid #00b1ff
+          box-shadow: 0 0 5px rgba(0, 177, 255, 1)
+          -webkit-box-shadow: 0 0 5px rgba(0, 177, 255, 1)
+          -moz-box-shadow: 0 0 5px rgba(0, 177, 255, 1)
+
+
+
     &.wide
       width: ($column-size * 5) + ($gutter-size * 6)
       padding-left: $gutter-size + $column-size
@@ -156,7 +180,10 @@
       
     .about
       color: $oja_green
-      padding: 20px
+      padding: 20px 20px 0px 20px
+      
+      &.dashboard
+        color: $light_blue
     
     .callout
       padding: 20px 20px 0px 20px
@@ -247,6 +274,25 @@
   
   .paper
     padding-top: 30px
+
+    a.review-button
+      width: 195px
+      margin-top: 3px
+      background: #009bdf
+      border-radius: 3px
+      height: 36px
+      box-shadow: inset 0px 1px 0px #00b1ff, 0px 2px 3px rgba (0,0,0,.25)
+      border: 1px solid #006c9b
+      font-family: Helvetica Neue
+      font-weight: bold
+      font-size: 15px
+      color: #fff
+      text-shadow: 0px 1px 2px rgba (0,0,0,.3)
+      text-decoration: none
+      padding: 5px
+      font-size: 12px
+      line-height: 25px
+
     .paper_preview
       vertical-align: top
       display: inline-block

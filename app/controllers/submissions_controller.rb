@@ -17,7 +17,8 @@ class SubmissionsController < ApplicationController
                         :arxiv_id => params[:arxiv_id],
                         :pdf_url => manuscript.pdf_url,
                         :authors => manuscript.authors.collect { |a| a.name },
-                        :submitted_at => manuscript.created_at)
+                        :submitted_at => manuscript.created_at,
+                        :category => manuscript.primary_category.abbreviation)
 
       paper.submitting_author_id = current_user.id
       
@@ -48,7 +49,7 @@ class SubmissionsController < ApplicationController
   end
   
   def dashboard
-    
+    @papers = Paper.all
   end
   
   def valid_url(arxiv_id)

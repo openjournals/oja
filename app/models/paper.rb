@@ -34,6 +34,24 @@ class Paper
       transition all => :accepted
     end
   end
+
+  def as_json(options)
+    super((options || { }).merge({
+        :methods => [:pretty_submission_date, :pretty_author, :pretty_status]
+    }))
+  end
+
+  def pretty_status
+    state.humanize
+  end
+
+  def pretty_submission_date
+    submitted_at.strftime("%-d %B %Y")
+  end
+
+  def pretty_author
+    "#{authors.first} et al."
+  end
   
   def submitting_author
     User.first(:id => submitting_author_id)  
@@ -86,6 +104,10 @@ class Paper
   # TODO - this only returns open issues
   def issues
     GITHUB_CONNECTION.list_issues(repo_name)
+  end
+
+  def cover_image
+    "https://raw.github.com/#{repo_name}/master/oja_pngs_#{arxiv_id}/#{arxiv_id}-small.png"
   end
 
   def issues_and_comments
