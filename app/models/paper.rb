@@ -101,9 +101,16 @@ class Paper
     GITHUB_CONNECTION.issues_comments(repo_name)
   end
 
-  # TODO - this only returns open issues
+  def open_issues 
+    GITHUB_CONNECTION.list_issues(repo_name, :state=>"open")
+  end
+
+  def closed_issues
+    GITHUB_CONNECTION.list_issues(repo_name, :state=>"closed")
+  end
+
   def issues
-    GITHUB_CONNECTION.list_issues(repo_name)
+    open_issues + closed_issues
   end
 
   def cover_image
