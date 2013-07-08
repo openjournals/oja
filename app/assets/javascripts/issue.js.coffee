@@ -30,7 +30,7 @@ class Issue
         </div>
         <div class='body'>
           <textarea placeholder='Write your issue here...'></textarea>
-          <a href='#' class='button add'>Add </a>
+          <a href='#' class='button add'>Add</a>
         </div>
       </div>
     """
@@ -114,20 +114,18 @@ class Issue
     """
       <div style='display:none' class='commentAdder'>
         <textarea placeholder='add your comment here'></textarea>
-        <a class='button addComment'>Add</a>
+        <a class='button addComment'>Add Comment</a>
       </div>
     """
 
   renderComments:=>
-    comments = ("<li>#{comment.body}</li>" for comment in @comments.reverse() ).join("\n")
+    console.log @comments
+    comments = ("<li><span class='comment_header'>#{moment(comment.created_at).format('Do MMMM YYYY HH:mm:ss')}</span><span class='comment_body'>#{comment.body}</span></li>" for comment in @comments.reverse() ).join("\n")
     """
       <ul class='commentList'>
         #{comments}
       </ul>
     """
-
-
-
 
   render:=>
 
@@ -137,10 +135,10 @@ class Issue
       button = ""
 
     $(@el).append """
-      <div id='issue-#{@id}' class='issue issue-#{@id} page-#{@page} #{@state} ' style='top:#{@offset}px' data-id='#{@id}'>
+      <div id='issue-#{@id}' class='issue issue-#{@id} page-#{@page} #{@state}' style='top:#{@offset}px' data-id='#{@id}'>
         <div class='header'>
-          <span class='created_at'> #{moment(@created_at).format('MMMM Do YYYY, h:mm:ss a')} </span>
-          <span class='close_issue'>#{ if @state=='open' then "close issue" else ""  }</span>
+          <span class='created_at'> #{moment(@created_at).format('Do MMMM YYYY HH:mm:ss')}</span>
+          <span class='close_issue'>#{ if @state=='open' then "Close Issue" else ""  }</span>
         </div>
         <div class='body'>
           #{@body}
