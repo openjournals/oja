@@ -6,7 +6,7 @@
 
       var pdfDoc = null,
           pageNum = 1,
-          scale = 0.27,
+          scale = 0.30,
           canvas = document.getElementById('mypdfdoc'),
           ctx = canvas.getContext('2d');
 
@@ -81,8 +81,8 @@
 
     <div class="paper">
       <div class="paper_preview">
-          <a style='cursor:pointer' class='prev'>prev</a>
-          <a style='cursor:pointer' class='next'>next</a>
+<!--           <a style='cursor:pointer' class='prev'>prev</a>
+          <a style='cursor:pointer' class='next'>next</a> -->
           <canvas id="mypdfdoc"></canvas>
       </div>
       <div class="paper_details">
@@ -101,7 +101,7 @@
         
         <h3><%= check_box_tag('author') %> I am a submitting author</h3>
         
-        <%= submit_tag("Submit Paper", :class => "green-button") %>
+        <%= submit_tag("Submit Paper", :class => "green-button", :onclick => "window.location.replace('/submissions/dashboard');") %>
       </div>
     </div>
   </div>
