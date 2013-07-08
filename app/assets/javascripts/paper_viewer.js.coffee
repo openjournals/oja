@@ -27,7 +27,7 @@ class PaperViewer
       @renderControlls() if @controls_el
       $(".pages .total_pages").html  @pdfDoc.numPages
       @paper.fetch_issues @renderIssues
-
+      $("#paper .spinner" ).remove()
 
   toggle_issues:=>
     @issues_entabled = not @issues_entabled
@@ -42,7 +42,7 @@ class PaperViewer
       issue.el = @issues_el
       issue.render()
       # @issue_list_el.append issue.render()
-
+    $("#issues .spinner").remove()
     @switchIssues()
 
   
