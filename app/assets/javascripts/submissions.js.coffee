@@ -41,6 +41,6 @@ $ ->
       <p class="kind">Review Status</p>
       <p class="value">#{paper.pretty_status}</p>
 
-      <a href="#" class="review-button">Begin Review</a>
+      <a href="/submissions/#{paper.id}/review" class="review-button">Begin Review</a>
 
     """
