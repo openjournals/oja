@@ -49,8 +49,28 @@ class SubmissionsController < ApplicationController
   end
   
   def dashboard
-    @papers = Paper.all
+    if current_user.editor?
+      redirect_to :editor_dashboard
+    elsif current_user.reviewer?
+      redirect_to :reviewer_dashboard
+    elsif current_user.author?
+      redirect_to :author_dashboard
+    end
   end
+
+  def reviewer_dashboard
+    @paper = current_user.papers_for_review
+  end
+
+  def editor_dashboard
+    @paper = Paper.submitted.all
+    @reviewers = User.reviewers
+  end
+
+  def author_dashboard
+    @paper = current_user.papers
+  end
+
   
   def valid_url(arxiv_id)
     # http://arxiv.org/abs/1211.3105
