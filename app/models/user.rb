@@ -13,14 +13,42 @@ class User
 
   has_many :papers 
 
+  scope :reviewers, :roles => 'reviewer'
+
   timestamps!
 
-  def is_editor
+  def is_editor?
     @roles.include? 'editor'
   end
 
-  def is_reviewer
+  def is_reviewer?
     @roles.include? 'reviewer'
+  end
+
+  def make_editor
+    self.add_to_set :roles => "editor"
+  end
+
+  def make_reviewer
+    self.add_to_set :roles => "reviwer"
+  end
+
+  def revoke_editor
+    self.pull :roles => "editor"
+  end
+
+  def revoke_reviewer
+    self.pull :roles => "reviewer"
+  end
+
+  def assign_paper(paper)
+    if is_reviewer
+      paper.set({:reviewer_id => id, state: "under_review"})
+    end
+  end
+
+  def papers_for_review
+    Paper.where({:reviewer_id=> id, :state=>"under_review"})
   end
 
   def role_on_paper(paper)
