@@ -13,8 +13,12 @@ class Paper
   key :authors, Array
   key :submitted_at, DateTime
   key :submitting_author_id, ObjectId
+  key :reviewer_id, ObjectId 
 
-  scope :under_review, :state => 'under_review'
+  scope :in_review, :state => 'under_review'
+  scope :submitted, :state => 'submitted'
+  scope :submitted, :state => 'accepted'
+
 
   # has_many   :authors, :in => :author_ids
   # belongs_to :reviewer
@@ -45,6 +49,7 @@ class Paper
     state.humanize
   end
 
+
   def pretty_submission_date
     submitted_at.strftime("%-d %B %Y")
   end
@@ -55,6 +60,14 @@ class Paper
   
   def submitting_author
     User.first(:id => submitting_author_id)  
+  end
+
+  def reviewer 
+    User.first(:id => reviewer_id)
+  end
+
+  def suggest_reviewers
+    User.where(:research_areas => category)
   end
 
   def arxiv_no
