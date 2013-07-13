@@ -49,13 +49,14 @@ class SubmissionsController < ApplicationController
   end
   
   def dashboard
-    if current_user.editor?
-      redirect_to :editor_dashboard
-    elsif current_user.reviewer?
-      redirect_to :reviewer_dashboard
-    elsif current_user.author?
-      redirect_to :author_dashboard
+    if current_user.is_editor?
+      redirect_to :action => :editor_dashboard
+    elsif current_user.is_reviewer?
+      redirect_to :action => :reviewer_dashboard
+    elsif current_user.is_author?
+      redirect_to :action => :author_dashboard
     end
+
   end
 
   def reviewer_dashboard
@@ -63,7 +64,9 @@ class SubmissionsController < ApplicationController
   end
 
   def editor_dashboard
-    @paper = Paper.submitted.all
+    @submitted_papers = Paper.submitted.all
+    @papers_in_review = Paper.in_review.all
+    @accepted_papers  = Paper.accepted.all
     @reviewers = User.reviewers
   end
 

@@ -75,6 +75,36 @@
 
           h3
             color: $oja_green
+
+      &.submitted
+        background: #f5f5f5 url('paper_edit.png') no-repeat 43px 25px
+        
+        &.active
+          border-right: none
+          background: #fafafa url('paper_edit.png') no-repeat 43px 25px
+
+          h3
+            color: $oja_green
+
+      &.in_review
+        background: #f5f5f5 url('paper_edit.png') no-repeat 43px 25px
+        
+        &.active
+          border-right: none
+          background: #fafafa url('paper_edit.png') no-repeat 43px 25px
+
+          h3
+            color: $oja_green
+
+      &.accepted
+        background: #f5f5f5 url('paper_edit.png') no-repeat 43px 25px
+        
+        &.active
+          border-right: none
+          background: #fafafa url('paper_edit.png') no-repeat 43px 25px
+
+          h3
+            color: $oja_green
       
   .left-certified
     width: $one-quarter + $gutter-size
@@ -93,7 +123,10 @@
     &.dashboard
       width: ($column-size * 7) + ($gutter-size * 4)
       padding-left: $gutter-size * 2
-
+      &.tabbed 
+        display: none 
+        &.active 
+          display: block
       ul
         li
           display: inline

@@ -25,12 +25,16 @@ class User
     @roles.include? 'reviewer'
   end
 
+  def is_author?
+    @roles.include? 'author'
+  end
+
   def make_editor
     self.add_to_set :roles => "editor"
   end
 
   def make_reviewer
-    self.add_to_set :roles => "reviwer"
+    self.add_to_set :roles => "reviewer"
   end
 
   def revoke_editor

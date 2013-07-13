@@ -62,6 +62,9 @@ Oja::Application.routes.draw do
     
     collection do
       get 'dashboard'
+      get 'editor_dashboard'
+      get 'reviewer_dashboard'
+      get 'author_dashboard'
     end
   end
 

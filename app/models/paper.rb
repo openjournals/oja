@@ -17,7 +17,7 @@ class Paper
 
   scope :in_review, :state => 'under_review'
   scope :submitted, :state => 'submitted'
-  scope :submitted, :state => 'accepted'
+  scope :accepted, :state => 'accepted'
 
 
   # has_many   :authors, :in => :author_ids

@@ -1,21 +1,71 @@
-<div class='reviewers'>
-	<h1>Reviewers</h1>
-	
-</div>
+<% content_for :head do %>
+  <script type="text/javascript">
+    papers = <%= raw @papers.to_json %>;
+    $(document).ready(function(){
+	  	$(".tab").click(function(e){
+	  		e.preventDefault()
+	  		type = $(this).data().ptype
+	  		$(".tab").removeClass("active")
+	  		$(".tab."+type).addClass("active")
+	  		$(".dashboard").removeClass("active")
+	  		$(".dashboard."+type).addClass("active")
+	  	});
+  	});
+  </script>
+<%end%>
 
-<div class='papers'>
-	
-	<div class='submitted'>
-		<h1>Submitted</h1>
+<div id="main">
+  <div class="left-tabs">
+    <div class="tab submitted active" data-ptype ='submitted'><h3>Submitted Papers</h3></div>
+    <div class="tab in_review" data-ptype ='in_review'><h3>Papers in review</h3></div>
+    <div class="tab accepted"  data-ptype ='accepted'> <h3>Accepted Papers</h3></div>
+    <div class="tab reviewers"  data-ptype ='reviewers'> <h3>Reviewers</h3></div>
 
-	</div>
+  </div>
 
-	<div class='in_review'>
-		<h1>In review</h1>
-	</div>
+  <div class="central-certified dashboard tabbed active submitted">
+  	<h3> Submitted papers </h3>
+    <ul>
+    <% @submitted_papers.each do |paper| -%>
+      <li><%= image_tag paper.cover_image, :class => "cover_image", :id => "#{paper.id}" %></li>
+    <% end %>
+    </ul>
+  </div>
 
-	<div class='accepted'>
-		<h1>Accepted</h1>
-	</div>
+  <div class="central-certified dashboard tabbed in_review">
+  	<h3>Papers in review</h3>
+    <ul>
+    <% @papers_in_review.each do |paper| -%>
+      <li><%= image_tag paper.cover_image, :class => "cover_image", :id => "#{paper.id}" %></li>
+    <% end %>
+    </ul>
+  </div>
 
+   <div class="central-certified dashboard tabbed accepted">
+   	<h3>Accepted papers</h3>
+    <ul>
+    <% @accepted_papers.each do |paper| -%>
+      <li><%= image_tag paper.cover_image, :class => "cover_image", :id => "#{paper.id}" %></li>
+    <% end %>
+    </ul>
+  </div>
+
+   <div class="central-certified dashboard tabbed reviewers">
+   	<h3>Reviewers</h3>
+    <ul>
+    <% @reviewers.each do |reviewer| -%>
+      <li>reviewer.name</li>
+    <% end %>
+    </ul>
+  </div>
+
+  <div class="right-certified">
+    <%= image_tag "fold.png", :class => "fold" %>
+    <h3 class="about dashboard">About this paper</h3>
+
+    <div class="paper">
+      <p>Select a paper on the left to view more details.</p>
+    </div>
+  </div>
+  <div class="clear"></div>
 </div>
