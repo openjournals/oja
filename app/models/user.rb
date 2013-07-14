@@ -21,6 +21,18 @@ class User
     @roles.include? 'editor'
   end
 
+  def greatest_role 
+    role = "author"
+    ["editor","reviewer","author"].reverse.each do |_role|
+      role = _role if roles.include? _role
+    end
+    role 
+  end
+
+  def full_name 
+    "#{first_name} #{last_name}"
+  end
+
   def is_reviewer?
     @roles.include? 'reviewer'
   end
