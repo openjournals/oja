@@ -4,6 +4,10 @@
   <div class="signup">
     <%= form_tag('/users') do %>
       <%= text_field_tag "user[email]", "Email address", "data-original-text" => "Email address", :class => "auto-replace" %>
+      
+    <%= text_field_tag "user[first_name]", "First name", "data-original-text" => "First Name", :class => "auto-replace" %>    
+    <%= text_field_tag "user[last_name]", "Last name", "data-original-text" => "Last Name", :class => "auto-replace" %>    
+
       <%= password_field_tag "user[password]", "password", "data-original-text" => "password", :class => "auto-replace" %>
       
       <%= submit_tag("Create Account", :class => "grey-button") %>
