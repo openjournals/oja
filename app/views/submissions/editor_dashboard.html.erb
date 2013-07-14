@@ -1,16 +1,6 @@
 <% content_for :head do %>
   <script type="text/javascript">
     papers = <%= raw @papers.to_json %>;
-    $(document).ready(function(){
-	  	$(".tab").click(function(e){
-	  		e.preventDefault()
-	  		type = $(this).data().ptype
-	  		$(".tab").removeClass("active")
-	  		$(".tab."+type).addClass("active")
-	  		$(".dashboard").removeClass("active")
-	  		$(".dashboard."+type).addClass("active")
-	  	});
-  	});
   </script>
 <%end%>
 
@@ -23,38 +13,31 @@
 
   </div>
 
+
+
   <div class="central-certified dashboard tabbed active submitted">
   	<h3> Submitted papers </h3>
-    <ul>
-    <% @submitted_papers.each do |paper| -%>
-      <li><%= image_tag paper.cover_image, :class => "cover_image", :id => "#{paper.id}" %></li>
-    <% end %>
-    </ul>
+    <%= render :partial => "paper_thumbnails", :locals => {:papers =>@submitted_papers} %>
   </div>
 
   <div class="central-certified dashboard tabbed in_review">
   	<h3>Papers in review</h3>
-    <ul>
-    <% @papers_in_review.each do |paper| -%>
-      <li><%= image_tag paper.cover_image, :class => "cover_image", :id => "#{paper.id}" %></li>
-    <% end %>
-    </ul>
+  	<%= render :partial => "paper_thumbnails", :locals => {:papers =>@papers_in_review} %>
   </div>
 
-   <div class="central-certified dashboard tabbed accepted">
+  <div class="central-certified dashboard tabbed accepted">
    	<h3>Accepted papers</h3>
-    <ul>
-    <% @accepted_papers.each do |paper| -%>
-      <li><%= image_tag paper.cover_image, :class => "cover_image", :id => "#{paper.id}" %></li>
-    <% end %>
-    </ul>
+  	<%= render :partial => "paper_thumbnails", :locals => {:papers =>@accepted_papers} %>
   </div>
+
 
    <div class="central-certified dashboard tabbed reviewers">
    	<h3>Reviewers</h3>
     <ul>
     <% @reviewers.each do |reviewer| -%>
-      <li>reviewer.name</li>
+      <li><%=reviewer.full_name%></li>
+
+      <%= render :partial => "paper_thumbnails", :locals => {:papers =>@papers_in_review.select{|paper| paper.reviewer_id == reviewer.id}} %>
     <% end %>
     </ul>
   </div>

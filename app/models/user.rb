@@ -67,6 +67,10 @@ class User
     Paper.where({:reviewer_id=> id, :state=>"under_review"})
   end
 
+  def accepted_papers 
+    Paper.where({:reviewer_id => id, :state=>"accepted"})
+  end
+
   def role_on_paper(paper)
     if  paper.submiting_authour == self
       role = 'submitting_author'

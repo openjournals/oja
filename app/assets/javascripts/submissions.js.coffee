@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+
 $ ->  
   $(".auto-replace").focus ->
     $(this).val('')
@@ -10,9 +11,6 @@ $ ->
     val = $(this).val()
     if val is ""
       $(this).val($(this).attr('data-original-text'))
-  
-  $(".tab.submit").click -> 
-    window.location.replace('/submissions/new')
 
   $(".tab.view").click -> 
     window.location.replace('/submissions/dashboard')
@@ -44,3 +42,13 @@ $ ->
       <a href="/submissions/#{paper.id}/review" class="review-button">Begin Review</a>
 
     """
+
+
+  $(".tab").click (e) ->
+    e.preventDefault()
+    type = $(@).data().ptype
+    $(".tab").removeClass("active")
+    $(".tab."+type).addClass("active")
+    $(".dashboard").removeClass("active")
+    $(".dashboard."+type).addClass("active")
+    
