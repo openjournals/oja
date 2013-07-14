@@ -27,7 +27,9 @@
     <%unless  params["action"] == 'review' %> 
       <div id="main-bar">
         <% if current_user %> 
-        <%= link_to "Sign out &raquo;".html_safe, destroy_user_session_path, :method => :delete, :class => "signout" %>
+          <span class='username'><%= current_user.email %>
+          <span class="role"><%=(current_user.greatest_role)%> </span>
+          <%= link_to "Sign out &raquo;".html_safe, destroy_user_session_path, :method => :delete, :class => "signout" %>
         <% end %> 
       </div>
     <%end%>
