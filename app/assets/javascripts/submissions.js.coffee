@@ -23,6 +23,7 @@ $ ->
     $('.cover_image').removeClass('selected')
     el.addClass('selected')
     paper = (paper for paper in papers when paper.id == el.attr("id"))[0]
+
     $(".paper").html """
       <p class="kind">Title</p>
       <p class="value">#{paper.title}</p>
@@ -39,10 +40,9 @@ $ ->
       <p class="kind">Review Status</p>
       <p class="value">#{paper.pretty_status}</p>
 
+      
       <a href="/submissions/#{paper.id}/review" class="review-button">Begin Review</a>
-
     """
-
 
   $(".tab").click (e) ->
     e.preventDefault()

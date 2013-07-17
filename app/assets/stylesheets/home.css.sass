@@ -38,73 +38,52 @@
       border-bottom: 1px solid #bfbfbf
       width: 150px
       height: 135px
-      background: #f5f5f5
+      background-color: #F5F5F5
+      background-position:  43px 25px
+      background-repeat: no-repeat
       
       h3
         width: 150px
         margin: 0px
         padding: 100px 0px 0px 0px
         text-align: center
-        
+
+
+      &.what
+        background-image: url('paper_view.png') 
+
+      &.how_to_submit
+        background-image: url('paper_submit.png')
+
+      &.papers
+        background-image: url('paper_accepted.png')
+
+
       &.submit
-        background: #f5f5f5 url('paper_submit.png') no-repeat 43px 25px
+        background-image: url('paper_submit.png') 
         
-        &.active
-          border-right: none
-          background: #fafafa url('paper_submit.png') no-repeat 43px 25px
-
-          h3
-            color: $oja_green
-      
       &.view
-        background: #f5f5f5 url('paper_view.png') no-repeat 43px 25px
-        
-        &.active
-          border-right: none
-          background: #fafafa url('paper_view.png') no-repeat 43px 25px
-
-          h3
-            color: $oja_green
+        background-image: url('paper_view.png') 
 
       &.edit
-        background: #f5f5f5 url('paper_edit.png') no-repeat 43px 25px
+        background-image: url('paper_edit.png')
         
-        &.active
-          border-right: none
-          background: #fafafa url('paper_edit.png') no-repeat 43px 25px
-
-          h3
-            color: $oja_green
 
       &.submitted
-        background: #f5f5f5 url('paper_edit.png') no-repeat 43px 25px
-        
-        &.active
-          border-right: none
-          background: #fafafa url('paper_edit.png') no-repeat 43px 25px
-
-          h3
-            color: $oja_green
+        background-image: url('paper_edit.png') 
+      
 
       &.in_review
-        background: #f5f5f5 url('paper_edit.png') no-repeat 43px 25px
+        background-image:  url('paper_view.png') 
         
-        &.active
-          border-right: none
-          background: #fafafa url('paper_edit.png') no-repeat 43px 25px
-
-          h3
-            color: $oja_green
-
       &.accepted
-        background: #f5f5f5 url('paper_edit.png') no-repeat 43px 25px
-        
-        &.active
-          border-right: none
-          background: #fafafa url('paper_edit.png') no-repeat 43px 25px
-
-          h3
-            color: $oja_green
+        background-image: url('paper_accepted.png') 
+      
+      &.active
+        border-right: none
+        background-color: #fafafa 
+        h3
+          color: $oja_green
       
   .left-certified
     width: $one-quarter + $gutter-size

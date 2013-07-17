@@ -16,7 +16,12 @@ task :populate_with_test_data => :environment do
 	papers.each do |p|
 		manuscript = Arxiv.get(p)
 		
-		state = ["under_review","submitted"].sample 
+		state = ["accepted", "under_review","submitted"].sample 
+		if state == "submitted"
+			reviewer_id = nil
+		else
+			reviewer_id = reviewer.id
+		end
 
 		p = Paper.create(
 			:title => manuscript.title,
@@ -28,7 +33,8 @@ task :populate_with_test_data => :environment do
 			:submitted_at => manuscript.created_at,
 			:category => manuscript.primary_category.abbreviation,
 			:submitting_author_id => [author1, author2].sample.id,
-			:github_address => "git@github.com:***REMOVED***/#{p}.git"
+			:github_address => "git@github.com:***REMOVED***/#{p}.git",
+			:reviewer_id => reviewer_id
 			)
 
 	end

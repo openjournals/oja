@@ -1,6 +1,8 @@
 <% content_for :head do %>
+
   <script type="text/javascript">
-    papers = <%= raw @papers.to_json %>;
+  	// FIX THIS !!!!!!!//
+    papers = <%= raw [@papers_in_review,@submitted_papers,@accepted_papers].flatten.to_json %>;
   </script>
 <%end%>
 
@@ -17,17 +19,17 @@
 
   <div class="central-certified dashboard tabbed active submitted">
   	<h3> Submitted papers </h3>
-    <%= render :partial => "paper_thumbnails", :locals => {:papers =>@submitted_papers} %>
+    <%= render :partial => "shared/paper_thumbnails", :locals => {:papers =>@submitted_papers} %>
   </div>
 
   <div class="central-certified dashboard tabbed in_review">
   	<h3>Papers in review</h3>
-  	<%= render :partial => "paper_thumbnails", :locals => {:papers =>@papers_in_review} %>
+  	<%= render :partial => "shared/paper_thumbnails", :locals => {:papers =>@papers_in_review} %>
   </div>
 
   <div class="central-certified dashboard tabbed accepted">
    	<h3>Accepted papers</h3>
-  	<%= render :partial => "paper_thumbnails", :locals => {:papers =>@accepted_papers} %>
+  	<%= render :partial => "shared/paper_thumbnails", :locals => {:papers =>@accepted_papers} %>
   </div>
 
 
@@ -35,9 +37,11 @@
    	<h3>Reviewers</h3>
     <ul>
     <% @reviewers.each do |reviewer| -%>
-      <li><%=reviewer.full_name%></li>
-
-      <%= render :partial => "paper_thumbnails", :locals => {:papers =>@papers_in_review.select{|paper| paper.reviewer_id == reviewer.id}} %>
+      <li>
+      	<p> <%=reviewer.full_name%> is currently reviewing  <%=@papers_in_review.select{|paper| paper.reviewer_id == reviewer.id}.count%> papers
+ 				</p>
+      	<%= render :partial => "shared/paper_thumbnails", :locals => {:papers =>@papers_in_review.select{|paper| paper.reviewer_id == reviewer.id}} %>
+      </li>
     <% end %>
     </ul>
   </div>
