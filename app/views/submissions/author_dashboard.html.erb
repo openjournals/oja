@@ -1,8 +1,6 @@
 <% content_for :head do %>
   <script type="text/javascript">
     papers = <%= raw @papers.to_json %>;
-
-
   </script>
 <%end%>
 
@@ -13,16 +11,14 @@
     <div class="tab submit"    data-ptype ='submit'> <h3>Submit a Paper</h3></div>
   </div>
 
-
-
   <div class="central-certified dashboard tabbed in_review">
     <h3>Papers in review</h3>
-    <%= render :partial => "shared/paper_thumbnails", :locals => {:papers =>@papers_in_review} %>
+    <%= render :partial => "paper_thumbnails", :locals => {:papers => @papers_in_review} %>
   </div>
 
   <div class="central-certified dashboard tabbed active accepted">
-    <h3> Accepted papers </h3>
-    <%= render :partial => "shared/paper_thumbnails", :locals => {:papers =>@accepted_papers} %>
+    <h3>Accepted papers</h3>
+    <%= render :partial => "paper_thumbnails", :locals => {:papers => @accepted_papers} %>
   </div>
 
 
