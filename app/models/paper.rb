@@ -34,8 +34,12 @@ class Paper
 
     after_transition :on => :accept, :do => :resolve_all_issues
 
+
     event :accept do
       transition all => :accepted
+    end
+    event :assigned do
+      transition :submitted => :under_review
     end
   end
 
@@ -43,6 +47,17 @@ class Paper
     super((options || { }).merge({
         :methods => [:pretty_submission_date, :pretty_author, :pretty_status]
     }))
+  end
+
+  def update_state(state)
+    if Paper.allowed_states.include? status
+      state = state
+      save
+    end 
+  end
+
+  def self.allowed_states
+    User.state_machine.states.map &:name
   end
 
   def pretty_status
@@ -62,6 +77,12 @@ class Paper
     User.first(:id => submitting_author_id)  
   end
 
+  def assign_to(reviewer)
+    reviewer_id = reviewer.id
+    assigned
+    save
+  end
+
   def reviewer 
     User.first(:id => reviewer_id)
   end
@@ -72,6 +93,10 @@ class Paper
 
   def arxiv_no
     arxiv_id.split("/").last
+  end
+
+  def is_reviwer(user)
+    user.id == reviewer_id
   end
 
   def self.id_from_request_uri(uri)
