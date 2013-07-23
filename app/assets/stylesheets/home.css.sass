@@ -20,11 +20,15 @@
   height: 2.5 * $gutter-size
   border-bottom: 1px solid #d2d2d2
 
-  .signout
-    text-decoration: none
+  .user-block
     float: right
-    margin: 30px 10px 0px 0px
-
+    margin: 17px 10px 0px 0px
+    line-height: 16x
+    
+    .signout
+      display: block
+      a
+        text-decoration: none
   
 #main
   background: #fafafa
@@ -181,7 +185,8 @@
     background: #f5f5f5
     border-left: 1px solid #bfbfbf
     height: 100%
-    min-height: 430px
+    // TODO fix this having to set height for the right-hand div!
+    min-height: 550px
     
     &.preview
       min-height: 700px
@@ -200,6 +205,14 @@
     
     .callout
       padding: 20px 20px 0px 20px
+    
+    .signup-message
+      margin: 20px 20px -20px 20px
+      background: $oja_message
+      border: 1px solid #ffb533
+      p
+        padding: 10px
+        margin: 0px
       
     .signup
       form
@@ -233,6 +246,7 @@
             text-shadow: 0px 1px 2px rgba (0,0,0,.3)
             
     .signin
+      padding-bottom: 20px
       form
         width: $column-size * 3
         padding-left: $gutter-size
@@ -262,8 +276,6 @@
             font-size: 15px
             color: #fff
             text-shadow: 0px 1px 2px rgba (0,0,0,.3)
-
-
       
     .paper
       padding: 0px 20px

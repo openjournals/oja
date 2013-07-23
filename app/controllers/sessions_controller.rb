@@ -1,8 +1,10 @@
 class SessionsController < Devise::SessionsController
   def new
-    self.resource = build_resource(nil, :unsafe => true)
-    clean_up_passwords(resource)
-    respond_with(resource, serialize_options(resource))
+    redirect_to root_path
+    set_flash_message(:signup, "Use the form below to signin or signup")
+    # self.resource = build_resource(nil, :unsafe => true)
+    # clean_up_passwords(resource)
+    # respond_with(resource, serialize_options(resource))
   end
 
   # POST /resource/sign_in

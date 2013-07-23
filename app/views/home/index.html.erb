@@ -1,11 +1,9 @@
 <div id="main">
-
   <div class="left-tabs">
     <div class="tab what active" data-ptype ='what'><h3>What is OJA?</h3></div>
     <div class="tab how_to_submit" data-ptype ='how_to_submit' id="view_papers_link"><h3>How do I submit a paper</h3></div>
     <div class="tab papers" data-ptype ="papers"><h3>OJA's papers</h3></div>
   </div>  
-
 
   <div class="central-certified dashboard tabbed active what">
     <%= render :partial => "what_is_oja" %>
@@ -15,12 +13,10 @@
     <%= render :partial => "how_to_submit" %>
   </div>
 
-    <div class="central-certified dashboard tabbed  papers">
+   <div class="central-certified dashboard tabbed papers">
     <%= render :partial => "shared/paper_thumbnails", :locals => {:papers => @papers }%>
   </div>
 
-
-  
   <div class="right-certified">
     <%= render :partial => "shared/signin_signup" %>
   </div>

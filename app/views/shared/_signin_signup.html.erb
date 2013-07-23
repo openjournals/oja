@@ -1,7 +1,15 @@
   <%= image_tag "fold.png", :class => "fold" %>
 
-  <h3 class="callout">New to OJA?</h3>
+  <%- if current_user -%>
+    <p>Something informative here as we're signed in</p>
+  <%- else -%>
   
+  <% if flash[:signup] %>
+  <div class="signup-message">
+    <p>Use the form below to signin or signup</p>
+  </div>  
+  <% end %>
+  <h3 class="callout">New to OJA?</h3>
   <div class="signup">
     <%= form_tag('/users') do %>
       <%= text_field_tag "user[email]", "Email address", "data-original-text" => "Email address", :class => "auto-replace" %>
@@ -24,3 +32,4 @@
       <%= submit_tag("Sign In", :class => "blue-button") %>
     <%- end -%>
   </div>
+  <%- end -%>

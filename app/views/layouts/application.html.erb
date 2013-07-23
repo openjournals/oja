@@ -30,11 +30,12 @@
     <%= link_to((image_tag "oja_logo.jpg"), root_url) %>
     <%unless  params["action"] == 'review' %> 
       <div id="main-bar">
-        <% if current_user %> 
-          Welcome 
-          <span class='username'><%= current_user.full_name %>
-          <span class="role">(<%=(current_user.greatest_role)%>) </span>
-          <%= link_to "Sign out &raquo;".html_safe, destroy_user_session_path, :method => :delete, :class => "signout" %>
+        <% if current_user %>
+        <div class="user-block">
+          <span class='username'><%= current_user.full_name.titleize %>
+          <span class="role">(<%=(current_user.greatest_role.capitalize)%>)</span>
+          <span class="signout"><%= link_to "Sign out &raquo;".html_safe, destroy_user_session_path, :method => :delete %></span>
+        </div> 
         <% end %> 
       </div>
     <%end%>

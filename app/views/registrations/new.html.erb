@@ -1,15 +1,45 @@
-<h3 class="callout">New to OJA?</h3>
+<div id="main">
 
-<div class="signup">
-  <%= form_tag('/users') do %>
-    <%= text_field_tag "user[email]", "Email address", "data-original-text" => "Email address", :class => "auto-replace" %>
+  <div class="left-tabs">
+    <div class="tab what" data-ptype='what'><h3>What is OJA?</h3></div>
+    <div class="tab how_to_submit" data-ptype ='how_to_submit' id="view_papers_link"><h3>How do I submit a paper</h3></div>
+    <div class="tab papers" data-ptype ="papers"><h3>OJA's papers</h3></div>
+    <div class="tab signup active" data-ptype ="signup"><h3>Signin /signup</h3></div>
+  </div>  
+  
+  <div class="central-certified dashboard tabbed what">
+    <%= render :partial => "home/what_is_oja" %>
+  </div>
 
-		<%= text_field_tag "user[first_name]", "First name", "data-original-text" => "First Name", :class => "auto-replace" %>    
-		<%= text_field_tag "user[last_name]", "Last name", "data-original-text" => "Last Name", :class => "auto-replace" %>    
+  <div class="central-certified dashboard tabbed  how_to_submit">
+    <%= render :partial => "home/how_to_submit" %>
+  </div>
+
+  <div class="central-certified dashboard tabbed papers">
+    <%= render :partial => "shared/paper_thumbnails", :locals => {:papers => @papers }%>
+  </div>
+  
+  <div class="central-certified dashboard tabbed signup active">
+    <h1>Signin or signup to the OJA</h1>
+    <%= form_tag('/users', :class => "new_user") do %>
+      <%= text_field_tag "user[email]", "Email address", "data-original-text" => "Email address", :class => "auto-replace" %>
+
+  		<%= text_field_tag "user[first_name]", "First name", "data-original-text" => "First Name", :class => "auto-replace" %>    
+  		<%= text_field_tag "user[last_name]", "Last name", "data-original-text" => "Last Name", :class => "auto-replace" %>    
 
 
-    <%= password_field_tag "user[password]", "password", "data-original-text" => "password", :class => "auto-replace" %>
+      <%= password_field_tag "user[password]", "password", "data-original-text" => "password", :class => "auto-replace" %>
 
-    <%= submit_tag("Create Account", :class => "grey-button") %>
-  <%- end -%>
+      <%= submit_tag("Create Account", :class => "grey-button") %>
+    <%- end -%>
+
+
+    <%= render :partial => "devise/shared/links" %>
+  </div>
+  
+  <div class="right-certified">
+    Something interesting in here?
+  </div>
+
+  <div class="clear"></div>
 </div>
