@@ -1,6 +1,6 @@
 class PapersController < ApplicationController
   respond_to :json
-  before :get_paper, :except=>[:index]
+  before_filter :get_paper, :except=>[:index]
 
   def index
     @papers = Paper.all
@@ -18,7 +18,7 @@ class PapersController < ApplicationController
 
     unless reviewer and review.is_reviewer?
       raise ActionController::RoutingError.new('Not Found')
-
+    end
     if current_user and current_user.is_editor? 
         @paper.assign_to reviewer
         respond_with @paper
