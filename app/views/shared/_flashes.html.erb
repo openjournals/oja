@@ -1,0 +1,7 @@
+<% if flash.keys.any? %>
+<div class="signup-message">
+  <%- flash.keys.each do |val| -%>
+    <p><%= flash[val] %></p>
+  <%- end -%>
+</div>  
+<% end %>

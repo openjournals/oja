@@ -4,11 +4,8 @@
     <p>Something informative here as we're signed in</p>
   <%- else -%>
   
-  <% if flash[:signup] %>
-  <div class="signup-message">
-    <p>Use the form below to signin or signup</p>
-  </div>  
-  <% end %>
+  <%= render :partial => "shared/flashes" %>
+  
   <h3 class="callout">New to OJA?</h3>
   <div class="signup">
     <%= form_tag('/users') do %>
