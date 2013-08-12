@@ -21,6 +21,9 @@ gem "omniauth-facebook"
 gem 'rest-client'
 gem 'rack-streaming-proxy'
 
+gem 'slim', '>= 1.1.0'
+gem 'sinatra', '>= 1.3.0', :require => nil
+
 # Username: ***REMOVED***
 # Password: ***REMOVED***
 
