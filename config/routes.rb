@@ -80,10 +80,7 @@ Oja::Application.routes.draw do
   root :to => 'home#index'
 
   require 'sidekiq/web'
-
-  authenticate :user, lambda { |u| u.admin? } do
-    mount Sidekiq::Web => '/sidekiq'
-  end
+  mount Sidekiq::Web => '/sidekiq'
   
   # See how all your routes lay out with "rake routes"
 
