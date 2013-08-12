@@ -9,6 +9,6 @@ test:
   <<: *global_settings
 
 production:
-  uri: MONGOHQ_URL
+  uri: ENV['MONGOHQ_URL']
   
 
