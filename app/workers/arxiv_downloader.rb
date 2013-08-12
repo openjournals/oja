@@ -8,16 +8,18 @@ class ArxivDownloader
   end
   
   def download(arxiv_id)
+    logger.fatal { "Starting download of #{arxiv_id}" }
     `curl "http://arxiv.org/e-print/#{arxiv_id}v1" -o #{Rails.root}/tmp/#{arxiv_id}.tar.gz`
     `mkdir #{Rails.root}/tmp/#{arxiv_id}`
     `tar -xf #{Rails.root}/tmp/#{arxiv_id}.tar.gz -C #{Rails.root}/tmp/#{arxiv_id}`
     `rm #{Rails.root}/tmp/#{arxiv_id}.tar.gz`
+    logger.fatal { "Completing download of #{arxiv_id}" }
   end
   
   def initialize_git(arxiv_id, paper_id)
-    puts "Creating GitHub repository"
+    logger.fatal { "Creating GitHub repository" }
     repo = GITHUB_CONNECTION.create_repository(arxiv_id)
-    puts "GitHub address: #{repo.ssh_url}"
+    logger.fatal { "GitHub address: #{repo.ssh_url}" }
     
     `cd #{Rails.root}/tmp/#{arxiv_id} && mkdir oja_pngs_#{arxiv_id}`
     `cd #{Rails.root}/tmp/#{arxiv_id} && curl -O http://arxiv.org/pdf/#{arxiv_id}.pdf`
@@ -25,7 +27,7 @@ class ArxivDownloader
     `cd #{Rails.root}/tmp/#{arxiv_id} && git init`
     `cd #{Rails.root}/tmp/#{arxiv_id} && git add *`
     
-    puts "Creating initial commit"
+    logger.fatal { "Creating initial commit" }
     
     `cd #{Rails.root}/tmp/#{arxiv_id} && git commit -m 'Adding initial paper'`
     
