@@ -11,7 +11,7 @@ gem 'state_machine'
 gem 'octokit'
 gem 'sidekiq'
 gem 'arxiv'
-
+gem 'unicorn'
 gem 'mongo_mapper',           '>= 0.9.0'
 gem 'jnunemaker-validatable', '>= 1.8.4'
 gem 'devise',                 '2.1'
