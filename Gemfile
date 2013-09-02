@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby "1.9.3"
+
 gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
@@ -9,7 +11,7 @@ gem 'state_machine'
 gem 'octokit'
 gem 'sidekiq'
 gem 'arxiv'
-
+gem 'unicorn'
 gem 'mongo_mapper',           '>= 0.9.0'
 gem 'jnunemaker-validatable', '>= 1.8.4'
 gem 'devise',                 '2.1'
@@ -18,6 +20,9 @@ gem 'bson_ext'
 gem "omniauth-facebook"
 gem 'rest-client'
 gem 'rack-streaming-proxy'
+
+gem 'slim', '>= 1.1.0'
+gem 'sinatra', '>= 1.3.0', :require => nil
 
 # Username: ***REMOVED***
 # Password: ***REMOVED***
@@ -56,4 +61,4 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-gem 'debugger'
+# gem 'debugger'

@@ -16,6 +16,10 @@ class User
   scope :reviewers, :roles => 'reviewer'
 
   timestamps!
+  
+  def admin?
+    @roles.include? 'admin'
+  end
 
   def is_editor?
     @roles.include? 'editor'
