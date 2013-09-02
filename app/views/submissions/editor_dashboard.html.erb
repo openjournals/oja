@@ -1,8 +1,9 @@
 <% content_for :head do %>
 
   <script type="text/javascript">
-  	// FIX THIS !!!!!!!//
+  	// FIX THIS !!!!!!!//  
     papers = <%= raw [@papers_in_review,@submitted_papers,@accepted_papers].flatten.to_json %>;
+    reviewers = <%= raw @reviewers.all.to_json %>;
   </script>
 <%end%>
 
@@ -35,6 +36,11 @@
 
    <div class="central-certified dashboard tabbed reviewers">
    	<h3>Reviewers</h3>
+    <div class='add_reviewer'>
+      <input type='text' palceholder="new_reviewer_email"></input>
+      <a class='small-blue-button'>Add Reviewer</a>
+
+    </div>
     <ul>
     <% @reviewers.each do |reviewer| -%>
       <li>
@@ -53,6 +59,7 @@
     <div class="paper">
       <p>Select a paper on the left to view more details.</p>
     </div>
+
   </div>
   <div class="clear"></div>
 </div>

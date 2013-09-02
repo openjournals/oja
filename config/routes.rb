@@ -69,6 +69,10 @@ Oja::Application.routes.draw do
   end
 
   resources :papers do
+    member do
+      post 'assign_for_review'
+    end
+
     resources :issues do
       member do
         put 'add_comment'
