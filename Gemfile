@@ -20,6 +20,7 @@ gem 'bson_ext'
 gem "omniauth-facebook"
 gem 'rest-client'
 gem 'rack-streaming-proxy'
+gem 'aws-sdk'
 
 gem 'slim', '>= 1.1.0'
 gem 'sinatra', '>= 1.3.0', :require => nil
