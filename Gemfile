@@ -13,7 +13,7 @@ gem 'unicorn'
 gem 'mongo_mapper',           '>= 0.9.0'
 gem 'jnunemaker-validatable', '>= 1.8.4'
 gem 'devise',                 '2.1'
-gem 'mm-devise',               :git => "https://github.com/pollingj/mm-devise.git"
+gem 'mm-devise'
 gem 'bson_ext'
 gem "omniauth-facebook"
 gem 'rest-client'
