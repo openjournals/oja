@@ -43,8 +43,8 @@ task :bundle_app do
   `git commit -a -m "deploying"`
   
   # export the app
-  `git archive -o marv.tar HEAD`
-  `gzip marv.tar`
+  `git archive -o theoj.tar HEAD`
+  `gzip theoj.tar`
   
   # S3 setup
   s3 = AWS::S3.new
