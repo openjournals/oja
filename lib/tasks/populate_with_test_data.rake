@@ -33,7 +33,7 @@ task :populate_with_test_data => :environment do
 			:submitted_at => manuscript.created_at,
 			:category => manuscript.primary_category.abbreviation,
 			:submitting_author_id => [author1, author2].sample.id,
-			:github_address => "git@github.com:***REMOVED***/#{p}.git",
+			:github_address => "git@github.com:openja/#{p}.git",
 			:reviewer_id => reviewer_id
 			)
 

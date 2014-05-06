@@ -23,8 +23,8 @@ gem 'aws-sdk'
 gem 'slim', '>= 1.1.0'
 gem 'sinatra', '>= 1.3.0', :require => nil
 
-# Username: ***REMOVED***
-# Password: ***REMOVED***
+# Username: 
+# Password: 
 
 # Gems used only for assets and not required
 # in production environments by default.
