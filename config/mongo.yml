@@ -9,6 +9,6 @@ test:
   <<: *global_settings
 
 production:
-  uri: ***REMOVED***
+  uri: 
   
 

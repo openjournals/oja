@@ -1,1 +1,1 @@
-GITHUB_CONNECTION = Octokit::Client.new(:login => '***REMOVED***', :password => '***REMOVED***')
+GITHUB_CONNECTION = Octokit::Client.new(:login => '', :password => '')
